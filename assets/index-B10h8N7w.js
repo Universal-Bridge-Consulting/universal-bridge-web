@@ -276,7 +276,7 @@ void OnCanFrameReceived(uint32_t pgn, const uint8_t* data) {
   "duns_identifier": "117517116",
   "commercial_credit_debt": 0.00,
   "headquarters": "Garden City, Nassau County, NY 11530",
-  "managing_director": "William Hanusiewicz (Tech Since 2001, Cargo Since 2004)",
+  "managing_director": "William Hanusiewicz IV (Tech Since 2001, Cargo Since 2004)",
   "lead_systems_architect": "Salvatore Hanusiewicz (Dual B.S. CS & Math, SUNY)"
 }`}};function u(e){return e.replace(/&/g,`&amp;`).replace(/</g,`&lt;`).replace(/>/g,`&gt;`).replace(/"/g,`&quot;`).replace(/'/g,`&#039;`)}function d(e){o=e,document.body.className=e,f()}function f(){let p=l[s],m=c.find(e=>e.id===n)||c[0],h=p.specs.map(e=>`
     <tr>
@@ -585,7 +585,7 @@ void OnCanFrameReceived(uint32_t pgn, const uint8_t* data) {
 
             <div class="welfare-quote-box">
               &ldquo;A bridge is not merely steel and concrete over a river—it is the moral act of creating safe passage between where you are and where you ought to be. As technologists and architects, we have a duty to build bridges that protect all life.&rdquo;
-              <span class="welfare-quote-author">— William Hanusiewicz, Founder & Managing Director</span>
+              <span class="welfare-quote-author">— William Hanusiewicz IV, Founder & Managing Director</span>
             </div>
           </div>
         </section>
@@ -602,7 +602,7 @@ void OnCanFrameReceived(uint32_t pgn, const uint8_t* data) {
             <div class="leader-box">
               <div>
                 <div class="leader-title">Managing Director & Principal Solutions Architect</div>
-                <div class="leader-name">William Hanusiewicz</div>
+                <div class="leader-name">William Hanusiewicz IV</div>
                 <p class="leader-bio">
                   Founder of Universal Bridge Consulting, LLC (2010). Over 25 years of enterprise technology architecture (since 2001), including mission-critical infrastructure for Wall Street brokerage trading systems and Madison Avenue marketing firms. Over 22 years of senior leadership in global cargo and supply chain automation (since 2004), architecting high-throughput CargoWise One data pipelines, ThinkAutomation C# middleware, and automated visibility engines supporting Fortune 50 healthcare, pharmaceutical, and consumer supply chains. Active NCHM Certified Occupancy Specialist (COS) overseeing HUD 50059, TRACS, and Section 8 compliance audits. Dedicated champion of humane animal welfare and sanctuary logistics.
                 </p>
