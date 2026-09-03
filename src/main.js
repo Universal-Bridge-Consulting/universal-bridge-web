@@ -2,9 +2,19 @@ import './style.css'
 
 const app = document.querySelector('#app')
 
-// 18 Total Themes Categorized
+// 26 Total Themes Categorized
 const themes = [
-  // Executive Suite (Style 1 Family)
+  // Top Enterprise Brands (8)
+  { id: 'theme-stripe', cat: 'topbrands', name: '🟣 Stripe (Fintech & Dev)', desc: 'Stripe Blurple Gradient & Precision Light Mode' },
+  { id: 'theme-palantir', cat: 'topbrands', name: '🛡️ Palantir (Foundry Intel)', desc: 'Tactical Blueprint Blue & Titanium Command' },
+  { id: 'theme-linear', cat: 'topbrands', name: '⚡ Linear (Craft Standard)', desc: 'Dark Obsidian & Glowing Luminous Micro-Borders' },
+  { id: 'theme-mckinsey', cat: 'topbrands', name: '🏛️ McKinsey (Strategy Tier)', desc: 'McKinsey Midnight & Authoritative Editorial Serif' },
+  { id: 'theme-wisetech', cat: 'topbrands', name: '🌐 WiseTech (CargoWise Brand)', desc: 'WiseTech Royal Blue & Clean Freight Enterprise' },
+  { id: 'theme-apple-exec', cat: 'topbrands', name: '🍎 Apple Pro (Cupertino Glass)', desc: 'Space Gray & Polished Frosted Titanium' },
+  { id: 'theme-bloomberg', cat: 'topbrands', name: '📊 Bloomberg (Quant Matrix)', desc: 'Pure Black & High-Contrast Terminal Amber' },
+  { id: 'theme-vercel', cat: 'topbrands', name: '▲ Vercel (Monochrome Speed)', desc: 'Pure Pitch Black & Sharp 1px Borders' },
+
+  // Executive Suite (Style 1 Family) (6)
   { id: 'theme-v1-classic', cat: 'exec', name: '1.1 Walker Classic Pure', desc: 'Corporate Navy & Crisp White' },
   { id: 'theme-v2-crimson', cat: 'exec', name: '1.2 Walker SCM Crimson', desc: 'Navy & Signature #8C2633 Burgundy' },
   { id: 'theme-v3-cobalt', cat: 'exec', name: '1.3 Cobalt Enterprise', desc: 'ThinkAutomation Cloud Pro' },
@@ -12,7 +22,7 @@ const themes = [
   { id: 'theme-v5-midnight', cat: 'exec', name: '1.5 Midnight Boardroom', desc: 'Dark Executive Navy Hybrid' },
   { id: 'theme-v6-platinum', cat: 'exec', name: '1.6 Platinum & Sapphire', desc: 'Institutional Consulting Tier' },
   
-  // Radical & Creative
+  // Radical & Creative (6)
   { id: 'theme-brutalist', cat: 'radical', name: '2.1 Swiss Brutalist', desc: 'Stark B&W, 3px Borders, Zero Radius' },
   { id: 'theme-cyberpunk', cat: 'radical', name: '2.2 Matrix Cyberpunk CRT', desc: 'Pure Black & Phosphor Green Glow' },
   { id: 'theme-heavy-freight', cat: 'radical', name: '2.3 Heavy Freight CAT', desc: 'Safety Yellow & Industrial Asphalt' },
@@ -20,7 +30,7 @@ const themes = [
   { id: 'theme-apple-monolith', cat: 'radical', name: '2.5 High-Fashion Monolith', desc: 'Pitch Black & Hairline Monochrome' },
   { id: 'theme-vaporwave', cat: 'radical', name: '2.6 Retro Vaporwave', desc: 'Pastel Sunset Pink & Cyan Mint' },
 
-  // Heritage & Institutional
+  // Heritage & Institutional (6)
   { id: 'theme-nordic-warm', cat: 'heritage', name: '3.1 Nordic Minimalist Paper', desc: 'Warm Ivory, Terracotta & Serif' },
   { id: 'theme-sovereign-gold', cat: 'heritage', name: '3.2 Sovereign Wall Street Gold', desc: 'Charcoal & Imperial Gilded Gold' },
   { id: 'theme-emerald-wealth', cat: 'heritage', name: '3.3 Private Equity Emerald', desc: 'British Racing Green & Champagne' },
@@ -29,8 +39,8 @@ const themes = [
   { id: 'theme-retro-mac', cat: 'heritage', name: '3.6 Retro Mac 1984 GUI', desc: 'System 7 Platinum Gray & Bevels' }
 ]
 
-let activeCategory = 'all'
-let activeTheme = 'theme-v1-classic'
+let activeCategory = 'topbrands' // Default to show the new top company styles immediately!
+let activeTheme = 'theme-stripe'
 let activeTab = 'cargowise'
 
 const cockpitData = {
@@ -170,17 +180,18 @@ function renderApp() {
   `).join('')
 
   app.innerHTML = `
-    <!-- Sticky Theme Selector Cockpit (18 Dramatically Different Styles) -->
+    <!-- Sticky Theme Selector Cockpit (26 Styles with Top Companies) -->
     <div class="theme-selector-bar">
       <div class="selector-top-row">
         <div class="selector-title">
-          <span>🎨 Style Engine: 18 Live Aesthetics</span>
+          <span>🎨 Style Engine: 26 World-Class Aesthetics</span>
         </div>
         <div class="category-tabs">
-          <button class="cat-tab ${activeCategory === 'all' ? 'active' : ''}" data-cat="all">All (18)</button>
+          <button class="cat-tab ${activeCategory === 'topbrands' ? 'active' : ''}" data-cat="topbrands">🏢 Top Companies (8)</button>
           <button class="cat-tab ${activeCategory === 'exec' ? 'active' : ''}" data-cat="exec">Executive (6)</button>
           <button class="cat-tab ${activeCategory === 'radical' ? 'active' : ''}" data-cat="radical">Radical / Tech (6)</button>
           <button class="cat-tab ${activeCategory === 'heritage' ? 'active' : ''}" data-cat="heritage">Heritage / Gov (6)</button>
+          <button class="cat-tab ${activeCategory === 'all' ? 'active' : ''}" data-cat="all">All (26)</button>
         </div>
       </div>
       <div class="theme-btn-grid">
