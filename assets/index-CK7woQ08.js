@@ -1,4 +1,4 @@
-(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),t.credentials=e.crossOrigin===`use-credentials`?`include`:e.crossOrigin===`anonymous`?`omit`:`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();var e=document.querySelector(`#app`),t=[{id:`theme-executive`,name:`🏢 Style 1: ThinkAutomation Executive (Walker Classic)`,desc:`Corporate Navy & White`},{id:`theme-developer`,name:`💻 Style 2: GitHub Pro Flight Deck (Developer)`,desc:`Dark Obsidian & Code Matrix`},{id:`theme-glass`,name:`✨ Style 3: Modern Glass Neon (Command Center)`,desc:`Slate & Cyan/Violet Glow`},{id:`theme-institutional`,name:`🏛️ Style 4: Institutional Sovereign (Wall Street Gold)`,desc:`Charcoal & Champagne Gold`}],n=`theme-executive`,r=`cargowise`,i={cargowise:{title:`WiseTech CargoWise One Integration`,desc:`Sub-second multi-leg air & ocean data enrichment pipeline powering Fortune 500 supply chain visibility.`,specs:[{label:`Throughput SLA`,value:`< 250ms per transaction`},{label:`Read Replica Joins`,value:`GlobalOceanWeekly View Injections`},{label:`Data Integrity`,value:`100% Strict Audit Mode`},{label:`Middleware Layer`,value:`ThinkAutomation C#`}],code:`// [WiseTech CargoWise One Data Adapter]
+(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),t.credentials=e.crossOrigin===`use-credentials`?`include`:e.crossOrigin===`anonymous`?`omit`:`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();var e=document.querySelector(`#app`),t=[{id:`theme-v1-classic`,name:`1.1: Walker Classic Pure`,desc:`Corporate Navy & White`},{id:`theme-v2-crimson`,name:`1.2: Walker Crimson Heritage`,desc:`Navy & SCM Crimson #8C2633`},{id:`theme-v3-cobalt`,name:`1.3: Cobalt Enterprise`,desc:`ThinkAutomation Cloud Pro`},{id:`theme-v4-steel`,name:`1.4: Slate & Steel Density`,desc:`Operations Logistics Command`},{id:`theme-v5-midnight`,name:`1.5: Midnight Boardroom`,desc:`Dark Executive Hybrid`},{id:`theme-v6-platinum`,name:`1.6: Platinum & Sapphire`,desc:`Institutional Consulting Tier`}],n=`theme-v1-classic`,r=`cargowise`,i={cargowise:{title:`WiseTech CargoWise One Integration`,desc:`Sub-second multi-leg air & ocean data enrichment pipeline powering Fortune 500 supply chain visibility.`,specs:[{label:`Throughput SLA`,value:`< 250ms per transaction`},{label:`Read Replica Joins`,value:`GlobalOceanWeekly View Injections`},{label:`Data Integrity`,value:`100% Strict Audit Mode`},{label:`Middleware Layer`,value:`ThinkAutomation C#`}],code:`// [WiseTech CargoWise One Data Adapter]
 public async Task<PipelineResult> ProcessShipmentAsync(ConsignmentRequest req) {
     using var db = new CWReadOnlyReplicaContext();
     var bol = await db.GlobalOceanWeekly
@@ -51,17 +51,17 @@ void OnCanFrameReceived(uint32_t pgn, const uint8_t* data) {
   "commercial_credit_debt": 0.00,
   "headquarters": "Garden City, Nassau County, NY 11530",
   "managing_director": "William Hanusiewicz (Principal Architect)",
-  "systems_architect": "Salvatore Hanusiewicz (MS Computer Science)"
+  "lead_systems_architect": "Salvatore Hanusiewicz (Dual B.S. CS & Math, SUNY)"
 }`}};function a(e){return e.replace(/&/g,`&amp;`).replace(/</g,`&lt;`).replace(/>/g,`&gt;`).replace(/"/g,`&quot;`).replace(/'/g,`&#039;`)}function o(e){n=e,document.body.className=e,s()}function s(){let c=i[r],l=c.specs.map(e=>`
     <tr>
       <td class="label">${e.label}</td>
       <td class="val">${e.value}</td>
     </tr>
   `).join(``);e.innerHTML=`
-    <!-- Live Interactive Theme Selector -->
+    <!-- Live Interactive Theme Selector: 6 Variations of Style 1 -->
     <div class="theme-selector-bar">
       <div class="theme-selector-label">
-        <span>🎨 Select Sample Style:</span>
+        <span>🎨 Select Style 1 Variation:</span>
       </div>
       <div class="theme-btn-group">
         ${t.map(e=>`
@@ -236,31 +236,38 @@ void OnCanFrameReceived(uint32_t pgn, const uint8_t* data) {
         </div>
 
         <div class="leaders-grid">
+          <!-- William Hanusiewicz -->
           <div class="leader-box">
-            <div class="leader-title">Managing Director & Principal Architect</div>
-            <div class="leader-name">William Hanusiewicz</div>
-            <p class="leader-bio">
-              Founder of Universal Bridge Consulting, LLC (2010). 16+ years architecting enterprise supply chain automations, ThinkAutomation C# pipelines, and CargoWise One data pipelines for Fortune 500 logistics leaders. Active NCHM Certified Occupancy Specialist (COS).
-            </p>
+            <div>
+              <div class="leader-title">Managing Director & Principal Solutions Architect</div>
+              <div class="leader-name">William Hanusiewicz</div>
+              <p class="leader-bio">
+                Founder of Universal Bridge Consulting, LLC (2010). Over 16 years architecting mission-critical supply chain middleware, ThinkAutomation C# pipelines, and high-throughput CargoWise One tracking infrastructure for Fortune 500 supply chains. Active NCHM Certified Occupancy Specialist (COS) overseeing HUD 50059, TRACS, and Section 8 portfolio compliance.
+              </p>
+            </div>
             <div class="tags-strip">
-              <span>WiseTech CargoWise</span>
+              <span>WiseTech CargoWise (CCO/CCS)</span>
               <span>ThinkAutomation C#</span>
-              <span>NCHM COS Accredited</span>
-              <span>Enterprise Architecture</span>
+              <span>NCHM Certified COS</span>
+              <span>Enterprise Data Architect</span>
             </div>
           </div>
 
+          <!-- Salvatore Hanusiewicz -->
           <div class="leader-box">
-            <div class="leader-title">Lead Systems Engineer & Technical Architect</div>
-            <div class="leader-name">Salvatore Hanusiewicz</div>
-            <p class="leader-bio">
-              BS & MS in Mathematics and Computer Science. Former Yardi Systems engineer with comprehensive mastery over Yardi Voyager database schemas, custom SQL reporting views, TRACS compliance algorithms, and large-scale enterprise data workflows.
-            </p>
+            <div>
+              <div class="leader-title">Lead Systems Engineer & Technical Architect &bull; Programming Guru</div>
+              <div class="leader-name">Salvatore Hanusiewicz</div>
+              <p class="leader-bio">
+                Dual B.S. in Computer Science and Applied Mathematics from the State University of New York (SUNY) at Farmingdale. Celebrated programming guru, mathematical modeler, and software architect with comprehensive mastery over complex data structures, low-latency algorithms, and database internals. Former Yardi Systems engineer with deep domain authority over Yardi Voyager database schemas, custom SQL analytics views, TRACS compliance algorithms, and enterprise automation pipelines.
+              </p>
+            </div>
             <div class="tags-strip">
-              <span>BS & MS Computer Science</span>
+              <span>Dual B.S. CS & Math (SUNY)</span>
+              <span>Programming Guru</span>
               <span>Ex-Yardi Voyager</span>
-              <span>SQL Optimization</span>
-              <span>Compliance Algorithms</span>
+              <span>SQL Schema Architect</span>
+              <span>Algorithmic Optimization</span>
             </div>
           </div>
         </div>
