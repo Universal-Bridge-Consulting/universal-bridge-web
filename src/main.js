@@ -1,259 +1,429 @@
 import './style.css'
 
-document.querySelector('#app').innerHTML = `
-  <div class="site-wrapper">
-    <!-- Ambient Background Glows -->
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
-    <div class="glow-orb orb-3"></div>
+const app = document.querySelector('#app')
 
-    <!-- Navigation Bar -->
-    <header class="navbar-container">
-      <nav class="navbar">
-        <div class="brand">
-          <a href="#" class="brand-link">
-            <span class="brand-text">UNIVERSAL BRIDGE</span>
-            <span class="brand-badge">EST. 2010</span>
-          </a>
+const cockpitData = {
+  cargowise: {
+    title: "CargoWise One Integration Architecture",
+    icon: "⚡",
+    desc: "Sub-second multi-leg air & ocean data enrichment pipeline powering Fortune 500 supply chain reporting.",
+    specs: [
+      { label: "Throughput SLA", value: "< 250ms per transaction" },
+      { label: "Replica Joins", value: "Custom View Injections" },
+      { label: "Data Integrity", value: "100% Strict Audit Mode" },
+      { label: "Middleware Layer", value: "ThinkAutomation C#" }
+    ],
+    code: `// [WiseTech CargoWise One Data Adapter]
+public async Task<PipelineResult> ProcessShipmentAsync(ConsignmentRequest req) {
+    using var db = new CWReadOnlyReplicaContext();
+    var bol = await db.GlobalOceanWeekly
+        .Where(x => x.BillOfLading == req.BOL)
+        .Select(x => new {
+            x.Carrier,
+            x.OriginPort,
+            x.RevisedETA,
+            DwellDays = EF.Functions.DateDiffDay(x.OrigETA, x.RevisedETA)
+        })
+        .FirstOrDefaultAsync();
+
+    if (bol?.DwellDays > 0) {
+        await TelemetryRouter.BroadcastDelayAlertAsync(bol);
+    }
+    return PipelineResult.Success(bol);
+}`
+  },
+  yardi: {
+    title: "Yardi Voyager & HUD 50059 Engine",
+    icon: "⚖️",
+    desc: "Direct database-level schema diagnostics for Section 8, HUD 50059, TRACS, and LIHTC tenant compliance.",
+    specs: [
+      { label: "Accreditation", value: "NCHM Certified Occupancy Specialist" },
+      { label: "Validity Period", value: "Active thru June 2027" },
+      { label: "Compliance Scope", value: "HUD 50059, TRACS, LIHTC" },
+      { label: "Database Layer", value: "Yardi Voyager SQL Schema" }
+    ],
+    code: `-- [Yardi Voyager HUD 50059 Certification Audit Query]
+SELECT 
+    t.TenantID,
+    t.UnitCode,
+    c.CertType,
+    c.EffectiveDate,
+    c.TenantRent,
+    c.UtilityAllowance,
+    c.AssistancePayment,
+    CASE 
+        WHEN c.GrossRent <> (c.TenantRent + c.AssistancePayment) 
+        THEN 'DISCREPANCY_FLAG'
+        ELSE 'AUDIT_VERIFIED'
+    END AS ComplianceStatus
+FROM Yardi_Tenant t
+INNER JOIN Yardi_Certifications c ON t.TenantID = c.TenantID
+WHERE c.EffectiveDate >= DATEADD(month, -12, GETDATE())
+  AND c.TRACSStatus = 'Pending_Review';`
+  },
+  fleet: {
+    title: "Commercial Fleet Telematics & Middleware",
+    icon: "🛰️",
+    desc: "Autonomous J1939 CAN-bus engine monitoring, hands-free voice co-pilots, and cold-chain compliance.",
+    specs: [
+      { label: "Protocol", value: "SAE J1939 CAN Bus" },
+      { label: "Telemetry Mode", value: "Hands-Free Voice Co-Pilot" },
+      { label: "Latency", value: "Real-time edge polling" },
+      { label: "Hardware Interop", value: "OBDLink MX+ / Android Wi-Fi" }
+    ],
+    code: `// [J1939 Commercial Heavy Fleet Telemetry Hook]
+void OnCanFrameReceived(uint32_t pgn, const uint8_t* data) {
+    if (pgn == PGN_ENGINE_TEMPERATURE) {
+        float coolantTemp = (data[0] * 1.0f) - 40.0f;
+        if (coolantTemp > THRESHOLD_WARN_TEMP) {
+            AudioSynthesizer::SpeakHandsFree("Alert: Coolant temperature elevated.");
+            DataLogger::RecordFault(FAULT_HIGH_TEMP, coolantTemp);
+        }
+    }
+}`
+  },
+  dossier: {
+    title: "Verified Corporate Lineage Dossier",
+    icon: "🏛️",
+    desc: "16+ continuous years in good standing with the New York State Department of State and Dun & Bradstreet.",
+    specs: [
+      { label: "Legal Entity", value: "UNIVERSAL BRIDGE CONSULTING, LLC" },
+      { label: "Date Established", value: "February 17, 2010" },
+      { label: "NYS DOS ID", value: "3913719" },
+      { label: "D-U-N-S Number", value: "117517116 (Since May 2020)" }
+    ],
+    code: `{
+  "entity_name": "UNIVERSAL BRIDGE CONSULTING, LLC",
+  "corporate_standing": "ACTIVE_GOOD_STANDING",
+  "formation_date": "2010-02-17T00:00:00Z",
+  "corporate_age_years": 16.5,
+  "state_jurisdiction": "New York (DOS ID 3913719)",
+  "duns_identifier": "117517116",
+  "commercial_credit_debt": 0.00,
+  "headquarters": "Garden City, Nassau County, NY 11530",
+  "managing_director": "William Hanusiewicz (Principal Architect)",
+  "systems_architect": "Salvatore Hanusiewicz (MS Computer Science)"
+}`
+  }
+}
+
+let activeTab = 'cargowise'
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function renderApp() {
+  const cur = cockpitData[activeTab]
+
+  const specRows = cur.specs.map(s => `
+    <div class="spec-item">
+      <span class="spec-label">${s.label}</span>
+      <span class="spec-value">${s.value}</span>
+    </div>
+  `).join('')
+
+  app.innerHTML = `
+    <!-- Top Nav Header -->
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="#" class="brand-badge">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M4 19h16M4 15l4-8 4 8 4-8 4 8M9 15h6"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>Universal Bridge</h1>
+            <span>Consulting, LLC &bull; Est. 2010</span>
+          </div>
+        </a>
+
+        <div class="header-status">
+          <span class="status-dot"></span>
+          <span>16-YR ACTIVE ENTERPRISE</span>
         </div>
-        <div class="nav-menu">
-          <a href="#services" class="nav-item">Practices</a>
-          <a href="#supply-chain" class="nav-item">Supply Chain</a>
-          <a href="#compliance" class="nav-item">HUD & Yardi</a>
-          <a href="#leadership" class="nav-item">Leadership</a>
-          <a href="#verification" class="nav-item">Corporate Dossier</a>
-          <a href="#contact" class="btn-primary nav-cta">Inquire</a>
-        </div>
-      </nav>
+
+        <ul class="nav-links">
+          <li><a href="#cockpit">Architecture</a></li>
+          <li><a href="#practices">Practices</a></li>
+          <li><a href="#leadership">Leadership</a></li>
+          <li><a href="#dossier">Dossier</a></li>
+          <li><a href="mailto:ceo@universalbridgeconsulting.com" class="cta-btn" style="padding:0.45rem 1rem;font-size:0.82rem;">Engage Syndicate</a></li>
+        </ul>
+      </div>
     </header>
 
     <main>
       <!-- Hero Section -->
       <section class="hero-section">
-        <div class="hero-inner">
-          <div class="hero-badge animate-fade">
-            <span class="badge-dot"></span>
-            <span>16+ YEARS OF MISSION-CRITICAL ENTERPRISE ARCHITECTURE</span>
+        <div class="container">
+          <div class="hero-meta-strip">
+            <span class="meta-chip highlight">NYS DOS ID: 3913719</span>
+            <span class="meta-chip">D-U-N-S: 117517116</span>
+            <span class="meta-chip">NCHM Certified Occupancy Specialist</span>
+            <span class="meta-chip">Garden City, NY 11530</span>
           </div>
-          <h1 class="hero-title animate-up delay-1">
-            Architecting Data Integrity.<br>
+
+          <h2 class="hero-title">
+            Architecting Data Integrity.<br/>
             <span class="gradient-text">Bridging Enterprise Scale.</span>
-          </h1>
-          <p class="hero-subtitle animate-up delay-2">
-            Universal Bridge Consulting delivers high-availability data automation, turnkey CargoWise One middleware, and certified Yardi Voyager HUD compliance for complex, heavily regulated enterprise operations.
+          </h2>
+          
+          <p class="hero-subtitle">
+            Universal Bridge Consulting delivers high-throughput supply chain middleware, automated HUD 50059 and Yardi compliance validation, and mission-critical data architecture. Founded February 17, 2010.
           </p>
-          <div class="hero-actions animate-up delay-3">
-            <a href="#services" class="btn-primary large">Explore Practice Areas</a>
-            <a href="#verification" class="btn-secondary large">Corporate Credentials</a>
-          </div>
 
-          <!-- Live Metrics Ledger -->
-          <div class="metrics-grid animate-up delay-4">
-            <div class="metric-card glass-panel">
-              <div class="metric-val">16+</div>
-              <div class="metric-label">Years Continuous Standing</div>
-              <div class="metric-sub">Est. February 17, 2010</div>
+          <!-- KPI Strip -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-number">16.5<span class="unit">Yrs</span></div>
+              <div class="kpi-label">Continuous Corporate Age</div>
+              <div class="kpi-sub">Est. Feb 17, 2010 &bull; NYS DOS ID 3913719</div>
             </div>
-            <div class="metric-card glass-panel">
-              <div class="metric-val">100%</div>
-              <div class="metric-label">Pipeline SLA Execution</div>
-              <div class="metric-sub">Fortune 500 Supply Chains</div>
+            <div class="kpi-card">
+              <div class="kpi-number">100<span class="unit">%</span></div>
+              <div class="kpi-label">Pipeline SLA Execution</div>
+              <div class="kpi-sub">WiseTech CargoWise One &bull; Walker &bull; Kenvue</div>
             </div>
-            <div class="metric-card glass-panel">
-              <div class="metric-val">COS</div>
-              <div class="metric-label">Certified Occupancy Specialist</div>
-              <div class="metric-sub">NCHM HUD 50059 Accredited</div>
+            <div class="kpi-card">
+              <div class="kpi-number">COS<span class="unit">NCHM</span></div>
+              <div class="kpi-label">Certified Occupancy Specialist</div>
+              <div class="kpi-sub">Active thru June 2027 &bull; Yardi Systems Audit</div>
             </div>
-            <div class="metric-card glass-panel">
-              <div class="metric-val">$0</div>
-              <div class="metric-label">Enterprise Debt</div>
-              <div class="metric-sub">D-U-N-S # 117517116 Verified</div>
+            <div class="kpi-card">
+              <div class="kpi-number">$0<span class="unit">Debt</span></div>
+              <div class="kpi-label">Pristine Balance Sheet</div>
+              <div class="kpi-sub">D-U-N-S # 117517116 &bull; Zero Liabilities</div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Trust Validation Banner -->
-      <section class="trust-banner">
-        <div class="trust-inner">
-          <p class="trust-label">DEPLOYED ACROSS MISSION-CRITICAL ENTERPRISE ECOSYSTEMS</p>
-          <div class="trust-tags">
-            <span class="trust-chip">WiseTech CargoWise One</span>
-            <span class="trust-chip">ThinkAutomation C# Middleware</span>
-            <span class="trust-chip">Yardi Systems Voyager</span>
-            <span class="trust-chip">HUD TRACS & 50059</span>
-            <span class="trust-chip">Walker SCM</span>
-            <span class="trust-chip">Kenvue Supply Chain</span>
+      <!-- Walker Automation Split-Preview Cockpit -->
+      <section class="preview-cockpit-section" id="cockpit">
+        <div class="container">
+          <div class="cockpit-card">
+            <div class="cockpit-header">
+              <div class="cockpit-tabs">
+                <button class="tab-btn ${activeTab === 'cargowise' ? 'active' : ''}" data-tab="cargowise">
+                  <span>⚡</span> CargoWise One Integration
+                </button>
+                <button class="tab-btn ${activeTab === 'yardi' ? 'active' : ''}" data-tab="yardi">
+                  <span>⚖️</span> HUD & Yardi Schema
+                </button>
+                <button class="tab-btn ${activeTab === 'fleet' ? 'active' : ''}" data-tab="fleet">
+                  <span>🛰️</span> Fleet Telematics
+                </button>
+                <button class="tab-btn ${activeTab === 'dossier' ? 'active' : ''}" data-tab="dossier">
+                  <span>🏛️</span> Corporate Dossier
+                </button>
+              </div>
+
+              <div class="cockpit-meta">
+                <span class="badge-live">PREVIEW ACTIVE</span>
+                <span>LATENCY: 0.18ms</span>
+              </div>
+            </div>
+
+            <div class="split-preview">
+              <!-- Left Specification Pane -->
+              <div class="preview-pane left-pane">
+                <h3>${cur.icon} ${cur.title}</h3>
+                <p class="pane-desc">${cur.desc}</p>
+
+                <div class="spec-list">
+                  ${specRows}
+                </div>
+
+                <div style="margin-top:1rem;">
+                  <a href="mailto:ceo@universalbridgeconsulting.com?subject=Inquiry: ${encodeURIComponent(cur.title)}" class="cta-btn" style="padding:0.6rem 1.25rem;font-size:0.85rem;">
+                    Request Architectural Review &rarr;
+                  </a>
+                </div>
+              </div>
+
+              <!-- Right Code / Schema Pane -->
+              <div class="code-pane">
+                <pre><code>${escapeHtml(cur.code)}</code></pre>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Core Practice Areas -->
-      <section id="services" class="section-container">
-        <div class="section-header">
-          <h2 class="section-title">Core Practice Areas</h2>
-          <p class="section-desc">Specialized technical and compliance disciplines engineered to bypass vendor risk, eliminate manual data latency, and ensure regulatory perfection.</p>
+      <!-- Practice Areas -->
+      <section class="container" id="practices" style="padding: 3rem 1.75rem 2rem;">
+        <div class="section-heading">
+          <h2>Core Practice Areas</h2>
+          <p>Institutional technical services backed by 16 years of hands-on systems architecture.</p>
         </div>
 
-        <div class="practices-grid">
-          <!-- Card 1 -->
-          <div class="practice-card glass-panel" id="supply-chain">
-            <div class="practice-icon">⚡</div>
-            <h3 class="practice-title">Supply Chain Data Automation</h3>
-            <p class="practice-lead">WiseTech CargoWise One architecture, ThinkAutomation C# middleware pipelines, and multimodal telemetry.</p>
-            <ul class="practice-list">
-              <li><strong>CargoWise Architecture:</strong> Certified tracks (CCO, CCS, CCP) across freight forwarding, customs, and order management.</li>
-              <li><strong>C# Routing Engines:</strong> ThinkAutomation Phase 2 pipelines executing sub-second XML/JSON translation and SQL injections.</li>
-              <li><strong>Milestone Telemetry:</strong> Automated ocean vessel tracking, rail intermodal dwell calculations, and air exception workflows.</li>
-              <li><strong>Fortune 500 Proof:</strong> Production pipelines actively serving Walker SCM, Kenvue, and global manufacturing operations.</li>
+        <div class="practice-grid">
+          <div class="practice-card">
+            <span class="card-tag tag-blue">Supply Chain Architecture</span>
+            <h3>WiseTech CargoWise One Automation</h3>
+            <p>End-to-end data pipeline construction across Certified CargoWise tracks (CCO, CCS, CCP). Specializing in automated multi-leg air/ocean tracking, rail intermodal dwell calculation, and ThinkAutomation C# middleware.</p>
+            <ul class="feature-checks">
+              <li>Direct read-replica schema discovery & join optimization</li>
+              <li>Sub-second milestone updates and exceptions dispatch</li>
+              <li>Production battle-tested on Walker SCM & Kenvue reports</li>
             </ul>
           </div>
 
-          <!-- Card 2 -->
-          <div class="practice-card glass-panel" id="compliance">
-            <div class="practice-icon">⚖️</div>
-            <h3 class="practice-title">Affordable Housing & HUD Compliance</h3>
-            <p class="practice-lead">NCHM Certified Occupancy Specialist oversight paired with ex-Yardi Voyager database systems engineering.</p>
-            <ul class="practice-list">
-              <li><strong>Certified Expertise:</strong> Active NCHM Certified Occupancy Specialist (COS) accreditation through June 2027.</li>
-              <li><strong>Yardi Voyager DB Audits:</strong> Direct SQL schema diagnostics identifying certification discrepancies before state audits.</li>
-              <li><strong>HUD 50059 & TRACS:</strong> End-to-end transmission remediation, voucher reconciliation, and subsidy recapture protection.</li>
-              <li><strong>LIHTC & Section 8:</strong> Tenant file compliance audits, utility allowance verification, and management agent reviews.</li>
+          <div class="practice-card">
+            <span class="card-tag tag-emerald">Real Estate Compliance</span>
+            <h3>Affordable Housing & HUD Compliance</h3>
+            <p>Certified Occupancy Specialist (COS) audit protection and Yardi Voyager database schema diagnostics. We identify certification errors and subsidy recapture risks before state or HUD audits trigger.</p>
+            <ul class="feature-checks">
+              <li>Active NCHM Certified Occupancy Specialist credential</li>
+              <li>HUD 50059, TRACS voucher, and LIHTC reconciliation</li>
+              <li>Ex-Yardi Voyager database schema specialists</li>
             </ul>
           </div>
 
-          <!-- Card 3 -->
-          <div class="practice-card glass-panel">
-            <div class="practice-icon">🛰️</div>
-            <h3 class="practice-title">Autonomous Telematics & Middleware</h3>
-            <p class="practice-lead">Commercial heavy fleet telemetry, J1939 protocols, and hands-free automated diagnostic co-pilots.</p>
-            <ul class="practice-list">
-              <li><strong>J1939 & OBD-II Systems:</strong> Real-time engine telemetry capture, fuel trim diagnostics, and fault code isolation.</li>
-              <li><strong>Voice Co-Pilot Engines:</strong> Hands-free Windows and Android voice synthesis alerting operators to threshold excursions.</li>
-              <li><strong>Enterprise Integration:</strong> Bridges between field telemetry hardware and cloud reporting dashboards.</li>
+          <div class="practice-card">
+            <span class="card-tag tag-purple">Telemetry & Edge</span>
+            <h3>Heavy Fleet Telematics & Middleware</h3>
+            <p>Commercial vehicle telemetry integration utilizing SAE J1939 CAN protocols, real-time edge diagnostic monitors, and hands-free audible alert systems for mission-critical logistics.</p>
+            <ul class="feature-checks">
+              <li>Non-interrupting audio alert synthesis & voice companion</li>
+              <li>J1939 engine parameter parsing & fault code logging</li>
+              <li>Direct BLE and Wi-Fi sensor telemetry ingestion</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- Leadership Section -->
-      <section id="leadership" class="section-container">
-        <div class="section-header">
-          <h2 class="section-title">Syndicate Leadership</h2>
-          <p class="section-desc">Decades of combined technical execution in enterprise data engineering, corporate compliance, and applied mathematics.</p>
+      <!-- Syndicate Leadership -->
+      <section class="container" id="leadership" style="padding: 2rem 1.75rem 4rem;">
+        <div class="section-heading">
+          <h2>Syndicate Leadership</h2>
+          <p>Senior multidisciplinary technical execution with deep corporate credentials.</p>
         </div>
 
         <div class="leadership-grid">
-          <div class="leader-card glass-panel">
-            <div class="leader-header">
-              <div>
-                <h3 class="leader-name">William Hanusiewicz</h3>
-                <p class="leader-role">Principal Solutions Architect & Managing Director</p>
-              </div>
-              <span class="leader-exp">16+ Yrs Enterprise</span>
+          <div class="leader-card">
+            <div>
+              <div class="leader-role">Managing Director & Principal Architect</div>
+              <div class="leader-name">William Hanusiewicz</div>
+              <p class="leader-bio">
+                Founder of Universal Bridge Consulting, LLC (2010). 16+ years architecting enterprise supply chain automations, ThinkAutomation C# pipelines, and CargoWise One data pipelines for Fortune 500 logistics leaders. Active NCHM Certified Occupancy Specialist (COS).
+              </p>
             </div>
-            <p class="leader-bio">
-              Founded Universal Bridge Consulting in February 2010. Specialist in enterprise data automation, WiseTech CargoWise One integration pipelines, ThinkAutomation C# execution engines, and active NCHM Certified Occupancy Specialist (COS) for HUD affordable housing compliance. Architect of high-availability visibility pipelines for Fortune 500 manufacturing and logistics clients.
-            </p>
             <div class="leader-tags">
-              <span class="tag">CargoWise Certified</span>
-              <span class="tag">Certified Occupancy Specialist</span>
-              <span class="tag">C# / SQL Systems</span>
+              <span>WiseTech CargoWise</span>
+              <span>ThinkAutomation C#</span>
+              <span>NCHM COS Accredited</span>
+              <span>Enterprise Data</span>
             </div>
           </div>
 
-          <div class="leader-card glass-panel">
-            <div class="leader-header">
-              <div>
-                <h3 class="leader-name">Salvatore Hanusiewicz</h3>
-                <p class="leader-role">Lead Systems Engineer & Technical Architect</p>
-              </div>
-              <span class="leader-exp">BS + MS Math & CS</span>
+          <div class="leader-card">
+            <div>
+              <div class="leader-role">Lead Systems Engineer & Technical Architect</div>
+              <div class="leader-name">Salvatore Hanusiewicz</div>
+              <p class="leader-bio">
+                BS & MS in Mathematics and Computer Science. Former Yardi Systems engineer with comprehensive mastery over Yardi Voyager database schemas, custom SQL reporting views, TRACS compliance algorithms, and large-scale enterprise data workflows.
+              </p>
             </div>
-            <p class="leader-bio">
-              Lead Systems Engineer with deep engineering background at Yardi Systems, holding both a Bachelor of Science and Master of Science in Mathematics and Computer Science. Authority on relational database engines, complex SQL schemas, high-throughput ETL data pipelines, and automated diagnostic scripting for property management and enterprise operations.
-            </p>
             <div class="leader-tags">
-              <span class="tag">Ex-Yardi Voyager DB</span>
-              <span class="tag">Master of Science</span>
-              <span class="tag">Database Architecture</span>
+              <span>BS & MS Computer Science</span>
+              <span>Ex-Yardi Voyager</span>
+              <span>SQL Optimization</span>
+              <span>Compliance Algorithms</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Corporate Dossier & Verification -->
-      <section id="verification" class="section-container">
-        <div class="section-header">
-          <h2 class="section-title">Corporate Dossier & Verified Standing</h2>
-          <p class="section-desc">Universal Bridge Consulting operates with complete transparency, verified state good standing, and a debt-free institutional credit profile.</p>
-        </div>
+      <!-- Corporate Verification Dossier -->
+      <section class="container" id="dossier">
+        <div class="dossier-box">
+          <div class="dossier-header">
+            <div>
+              <h3>Official Corporate Dossier</h3>
+              <p>Public corporate standing data for vendor onboarding, enterprise RFP reviews, and bank underwriters.</p>
+            </div>
+            <div class="dossier-seal">
+              <span>✓</span> NYS ACTIVE GOOD STANDING
+            </div>
+          </div>
 
-        <div class="dossier-card glass-panel">
           <div class="dossier-grid">
-            <div class="dossier-row">
-              <span class="dossier-key">Legal Entity:</span>
-              <span class="dossier-val">UNIVERSAL BRIDGE CONSULTING, LLC</span>
+            <div class="dossier-cell">
+              <div class="dossier-label">Legal Name</div>
+              <div class="dossier-value">UNIVERSAL BRIDGE CONSULTING, LLC</div>
             </div>
-            <div class="dossier-row">
-              <span class="dossier-key">Date of Formation:</span>
-              <span class="dossier-val">February 17, 2010 (16.5 Years of Continuous Standing)</span>
+            <div class="dossier-cell">
+              <div class="dossier-label">Formation Date</div>
+              <div class="dossier-value">February 17, 2010 (16+ Years)</div>
             </div>
-            <div class="dossier-row">
-              <span class="dossier-key">Jurisdiction:</span>
-              <span class="dossier-val">New York State Department of State (Nassau County)</span>
+            <div class="dossier-cell">
+              <div class="dossier-label">NYS DOS ID</div>
+              <div class="dossier-value">3913719</div>
             </div>
-            <div class="dossier-row">
-              <span class="dossier-key">NYS DOS ID:</span>
-              <span class="dossier-val highlight">3913719 (Verified Active & In Good Standing)</span>
+            <div class="dossier-cell">
+              <div class="dossier-label">Dun & Bradstreet D-U-N-S</div>
+              <div class="dossier-value">117517116 (Active 2020)</div>
             </div>
-            <div class="dossier-row">
-              <span class="dossier-key">Dun & Bradstreet:</span>
-              <span class="dossier-val highlight">D-U-N-S # 117517116 (Active Profile Since May 2020)</span>
+            <div class="dossier-cell">
+              <div class="dossier-label">NAICS Industry Codes</div>
+              <div class="dossier-value">541512 / 541611</div>
             </div>
-            <div class="dossier-row">
-              <span class="dossier-key">Primary NAICS Codes:</span>
-              <span class="dossier-val">541512 (Computer Systems Design) • 541611 (Management Consulting)</span>
-            </div>
-            <div class="dossier-row">
-              <span class="dossier-key">Commercial Headquarters:</span>
-              <span class="dossier-val">Garden City, Nassau County, New York 11530</span>
-            </div>
-            <div class="dossier-row">
-              <span class="dossier-key">State Regulatory Status:</span>
-              <span class="dossier-val">Biennial Statement Filed & Current with New York State</span>
+            <div class="dossier-cell">
+              <div class="dossier-label">Commercial Office</div>
+              <div class="dossier-value">Garden City, Nassau County, NY</div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <!-- Contact & Consultation Section -->
-      <section id="contact" class="section-container contact-section">
-        <div class="glass-panel contact-card">
-          <h2 class="contact-title">Initiate Enterprise Engagement</h2>
-          <p class="contact-desc">Discuss your supply chain integration pipeline, Yardi Voyager HUD audit prep, or specialized consulting needs directly with our principal architects.</p>
-          <div class="contact-methods">
-            <a href="mailto:ceo@universalbridgeconsulting.com" class="btn-primary large">
-              ✉️ Contact Executive Office: ceo@universalbridgeconsulting.com
-            </a>
-          </div>
-          <p class="contact-note">Direct principal response within 24 business hours. Confidentiality assured.</p>
         </div>
       </section>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <strong>UNIVERSAL BRIDGE CONSULTING, LLC</strong>
-          <p>Enterprise Supply Chain Data Automation & HUD Regulatory Compliance</p>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div>
+            <h4 style="font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:0.4rem;">Universal Bridge Consulting, LLC</h4>
+            <p style="font-size:0.85rem;color:var(--text-muted);max-width:400px;">
+              Enterprise Data Architecture &bull; HUD & Yardi Compliance &bull; Founded February 17, 2010.
+            </p>
+          </div>
+
+          <div>
+            <a href="mailto:ceo@universalbridgeconsulting.com" class="cta-btn">
+              <span>Contact Managing Director</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="footer-legal">
-          <p>&copy; 2010–2026 Universal Bridge Consulting, LLC. All rights reserved.</p>
-          <p>NYS Department of State DOS ID: 3913719 • D-U-N-S: 117517116 • Garden City, NY</p>
+
+        <div class="footer-bottom">
+          <span>&copy; 2010–2026 Universal Bridge Consulting, LLC. All rights reserved.</span>
+          <span>Routing: <code style="color:var(--accent-blue);">ceo@universalbridgeconsulting.com</code></span>
         </div>
       </div>
     </footer>
-  </div>
-`
+  `
+
+  // Attach tab switching events
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.getAttribute('data-tab')
+      if (tab && cockpitData[tab]) {
+        activeTab = tab
+        renderApp()
+      }
+    })
+  })
+}
+
+renderApp()
