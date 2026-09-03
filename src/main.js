@@ -3,8 +3,9 @@ import './style.css'
 const app = document.querySelector('#app')
 
 // Navigation View State
-let activeView = 'overview' // 'overview' | 'trademarks'
-let selectedLogoId = 'logo-keystone'
+let activeView = 'trademarks' // Default to show William the new brandmarks immediately!
+let selectedLogoId = 'logo-sovereign-keystone'
+let activeTmFilter = 'all' // 'all' | 'cargo' | 'tech' | 'sovereign' | 'compliance'
 
 // 32 Total Themes Categorized
 const themes = [
@@ -55,138 +56,366 @@ let activeCategory = 'mckinsey_fam'
 let activeTheme = 'theme-mckinsey-sovereign'
 let activeTab = 'cargowise'
 
-// 8 Distinct Trademark / Logomark Concepts
+// 16 Full-Color, Domain-Tailored Trademark Concepts
 const trademarkLogos = [
+  // 1. Sovereign Keystone Bridge
   {
-    id: 'logo-keystone',
-    name: 'The Sovereign Keystone Bridge',
-    badge: 'Institutional Architecture',
-    desc: 'Classical Roman triumphal arch anchored by two enterprise monoliths with a central interlocking keystone. Symbolizes unshakeable structural permanence, compliance standards, and corporate trust.',
-    specs: { Geometry: 'Keystone Arch & Dual Pylons', Rationale: '16-Year Institutional Stability', FaviconScale: 'Optimal at 16px/32px' },
+    id: 'logo-sovereign-keystone',
+    cat: 'sovereign',
+    name: 'The Sovereign Arch & Keystone',
+    badge: 'Institutional Prestige',
+    colors: ['#0f2744', '#8C2633', '#d4af37'],
+    colorNames: 'Corporate Navy &bull; SCM Crimson &bull; Imperial Gold',
+    desc: 'Deep Corporate Navy pillars crowned by Walker SCM’s signature #8C2633 burgundy keystone and a golden foundation span. Projects 16 years of legal authority and permanent enterprise stability.',
+    specs: { Domain: 'Aged Corporate Sovereign', Meaning: 'Unshakeable Institutional Foundation', VectorStyle: 'Multi-Tone Solid Vector' },
     svg: `
-      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none" stroke="currentColor">
-        <path d="M15 85V45L35 25V85" stroke-width="6" stroke-linejoin="round"/>
-        <path d="M85 85V45L65 25V85" stroke-width="6" stroke-linejoin="round"/>
-        <path d="M42 22L50 14L58 22L55 34H45L42 22Z" fill="currentColor"/>
-        <path d="M35 55C35 45 42 38 50 38C58 38 65 45 65 55" stroke-width="5" stroke-linecap="round"/>
-        <line x1="10" y1="88" x2="90" y2="88" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="50" cy="62" r="3.5" fill="currentColor"/>
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <path d="M15 85V45L35 25V85" fill="#0f2744"/>
+        <path d="M85 85V45L65 25V85" fill="#0f2744"/>
+        <path d="M42 22L50 14L58 22L55 34H45L42 22Z" fill="#8C2633"/>
+        <path d="M35 55C35 45 42 38 50 38C58 38 65 45 65 55" stroke="#8C2633" stroke-width="6" stroke-linecap="round"/>
+        <line x1="10" y1="88" x2="90" y2="88" stroke="#d4af37" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="50" cy="62" r="4" fill="#d4af37"/>
       </svg>
     `
   },
+
+  // 2. Multi-Modal Transit Span
   {
-    id: 'logo-data-span',
-    name: 'The Binary Data Span',
-    badge: 'High-Throughput Routing',
-    desc: 'Twin vertical mainframe towers bridged by 3 high-velocity data pipelines (Air, Ocean, and Compliance Telematics). Represents sub-second WiseTech CargoWise & ThinkAutomation throughput.',
-    specs: { Geometry: 'Twin Pylons + Triple Vector Span', Rationale: 'Multi-Leg Freight Middleware', FaviconScale: 'High-contrast clean' },
+    id: 'logo-multimodal-transit',
+    cat: 'cargo',
+    name: 'The Multi-Modal Transit Span',
+    badge: 'Air & Ocean Logistics',
+    colors: ['#38bdf8', '#1d4ed8', '#10b981'],
+    colorNames: 'Sky Blue (Air) &bull; Royal Cobalt (Ocean) &bull; Rail Emerald',
+    desc: 'Three vivid aerodynamic bridge ribbons representing the 3 pillars of global freight: Sky Blue for Air Charters, Royal Cobalt for Ocean Containers, and Emerald for Intermodal Rail & Dwell automation.',
+    specs: { Domain: 'WiseTech CargoWise One', Meaning: 'Multi-Leg Supply Chain Visibility', VectorStyle: 'Dynamic Fluid Ribbon Span' },
     svg: `
-      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none" stroke="currentColor">
-        <rect x="16" y="24" width="12" height="60" rx="3" stroke-width="5"/>
-        <rect x="72" y="24" width="12" height="60" rx="3" stroke-width="5"/>
-        <path d="M28 36C42 36 58 36 72 36" stroke-width="4.5" stroke-linecap="round"/>
-        <path d="M28 54C42 54 58 54 72 54" stroke-width="4.5" stroke-linecap="round"/>
-        <path d="M28 72C42 72 58 72 72 72" stroke-width="4.5" stroke-linecap="round"/>
-        <circle cx="50" cy="36" r="4" fill="currentColor"/>
-        <circle cx="50" cy="54" r="4" fill="currentColor"/>
-        <circle cx="50" cy="72" r="4" fill="currentColor"/>
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <path d="M16 35C35 20 65 20 84 35" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
+        <path d="M16 52C35 37 65 37 84 52" stroke="#1d4ed8" stroke-width="6" stroke-linecap="round"/>
+        <path d="M16 69C35 54 65 54 84 69" stroke="#10b981" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="50" cy="27" r="4.5" fill="#38bdf8"/>
+        <circle cx="50" cy="44" r="4.5" fill="#1d4ed8"/>
+        <circle cx="50" cy="61" r="4.5" fill="#10b981"/>
+        <line x1="20" y1="82" x2="80" y2="82" stroke="#0f172a" stroke-width="5" stroke-linecap="round"/>
       </svg>
     `
   },
+
+  // 3. Interlocking UB Monogram
   {
-    id: 'logo-ub-monogram',
-    name: 'The Linked UB Monogram',
-    badge: 'Executive Sovereign Ligature',
-    desc: 'An interlocking monogram where the curves of the capital "U" descend and form the suspension cables of a grand bridge, fusing seamlessly into the structural counter of the capital "B".',
-    specs: { Geometry: 'Interlocking UB Monogram', Rationale: 'Executive Consulting & Wall St Brand', FaviconScale: 'Instant Recognition' },
+    id: 'logo-gilded-monogram',
+    cat: 'sovereign',
+    name: 'The Gilded Wall Street Ligature',
+    badge: 'Executive Monogram',
+    colors: ['#ffd700', '#d4af37', '#0f172a'],
+    colorNames: 'Bright Gold &bull; Antique Bronze &bull; Obsidian Slate',
+    desc: 'An interlocking monogram where the curves of the capital "U" descend into bridge suspension cables that lock into the foundation of the capital "B". Finished in metallic gold gradients.',
+    specs: { Domain: 'Wall Street & Financial Heritage', Meaning: 'Bespoke Executive Consulting', VectorStyle: 'Gilded Metallic Gradient' },
     svg: `
-      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none" stroke="currentColor">
-        <path d="M22 24V56C22 69 32 78 45 78C58 78 68 69 68 56V24" stroke-width="6.5" stroke-linecap="round"/>
-        <path d="M45 24H68C77 24 84 30 84 38C84 46 77 51 68 51H45" stroke-width="6" stroke-linecap="round"/>
-        <path d="M45 51H70C80 51 88 57 88 66C88 74 80 80 70 80H45" stroke-width="6" stroke-linecap="round"/>
-        <line x1="22" y1="88" x2="88" y2="88" stroke-width="5" stroke-linecap="round"/>
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <defs>
+          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffd700"/>
+            <stop offset="50%" stop-color="#d4af37"/>
+            <stop offset="100%" stop-color="#996515"/>
+          </linearGradient>
+        </defs>
+        <path d="M22 24V56C22 69 32 78 45 78C58 78 68 69 68 56V24" stroke="url(#goldGrad)" stroke-width="7" stroke-linecap="round"/>
+        <path d="M45 24H68C77 24 84 30 84 38C84 46 77 51 68 51H45" stroke="url(#goldGrad)" stroke-width="7" stroke-linecap="round"/>
+        <path d="M45 51H70C80 51 88 57 88 66C88 74 80 80 70 80H45" stroke="url(#goldGrad)" stroke-width="7" stroke-linecap="round"/>
+        <line x1="16" y1="88" x2="88" y2="88" stroke="#0f172a" stroke-width="6" stroke-linecap="round"/>
       </svg>
     `
   },
+
+  // 4. Algorithmic Graph Bridge
   {
-    id: 'logo-hex-conduit',
-    name: 'The Hexagonal Node Conduit',
-    badge: 'Algorithmic Systems Engine',
-    desc: 'A precision isometric hexagon containing an internal diagonal bridge corridor. Represents complex data structures, low-latency compiler algorithms, and database internals.',
-    specs: { Geometry: 'Isometric Hexagon + Bridge Conduit', Rationale: 'Systems Engineering & Algorithms', FaviconScale: 'Pixel-sharp on retina' },
+    id: 'logo-algorithmic-graph',
+    cat: 'tech',
+    name: 'The Algorithmic Graph Bridge',
+    badge: 'CS & Math Modeling',
+    colors: ['#8b5cf6', '#06b6d4', '#ec4899'],
+    colorNames: 'Electric Violet &bull; Neon Cyan &bull; Laser Magenta',
+    desc: 'Direct tribute to Sal Hanusiewicz’s Dual B.S. in CS & Applied Mathematics. Five interconnected mathematical graph nodes form a structural suspension bridge over coordinate axes.',
+    specs: { Domain: 'Algorithms, Data Structures & Compilers', Meaning: 'Sub-Second Computational Precision', VectorStyle: 'Graph Theory & Telemetry' },
     svg: `
-      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none" stroke="currentColor">
-        <path d="M50 14L85 34V74L50 94L15 74V34L50 14Z" stroke-width="5.5" stroke-linejoin="round"/>
-        <path d="M22 65L50 50L78 35" stroke-width="6" stroke-linecap="round"/>
-        <path d="M22 45L50 30L78 15" stroke-width="3" stroke-linecap="round" stroke-dasharray="3 3"/>
-        <circle cx="50" cy="50" r="6" fill="currentColor"/>
-        <path d="M50 56V86" stroke-width="4" stroke-linecap="round"/>
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <line x1="15" y1="50" x2="32" y2="28" stroke="#8b5cf6" stroke-width="3.5"/>
+        <line x1="32" y1="28" x2="50" y2="40" stroke="#06b6d4" stroke-width="3.5"/>
+        <line x1="50" y1="40" x2="68" y2="28" stroke="#06b6d4" stroke-width="3.5"/>
+        <line x1="68" y1="28" x2="85" y2="50" stroke="#ec4899" stroke-width="3.5"/>
+        <path d="M15 65C32 50 68 50 85 65" stroke="#8b5cf6" stroke-width="4.5" stroke-linecap="round"/>
+        <circle cx="15" cy="50" r="5" fill="#8b5cf6"/>
+        <circle cx="32" cy="28" r="5" fill="#06b6d4"/>
+        <circle cx="50" cy="40" r="6" fill="#ec4899"/>
+        <circle cx="68" cy="28" r="5" fill="#06b6d4"/>
+        <circle cx="85" cy="50" r="5" fill="#8b5cf6"/>
+        <line x1="12" y1="80" x2="88" y2="80" stroke="#06b6d4" stroke-width="3" stroke-dasharray="3 3"/>
       </svg>
     `
   },
+
+  // 5. Trans-Oceanic Horizon Arch
   {
-    id: 'logo-swiss-cantilever',
-    name: 'The Swiss Brutalist Cantilever',
-    badge: 'Architectural Pure Geometry',
-    desc: 'Stark 45-degree geometric cantilever bridge formed from interlocking architectural planes. Zero fluff, pure functional mass, and absolute structural confidence.',
-    specs: { Geometry: '45-Degree Solid Bevel & Cantilever', Rationale: 'Bauhaus & Swiss Typographic Rigor', FaviconScale: 'Maximum punch at small size' },
+    id: 'logo-ocean-horizon',
+    cat: 'cargo',
+    name: 'The Trans-Oceanic Horizon Arch',
+    badge: 'Maritime Cargo & Vessels',
+    colors: ['#002244', '#f97316', '#14b8a6'],
+    colorNames: 'Deep Marine &bull; Sunrise Orange &bull; Seafoam Cyan',
+    desc: 'The hull of an ocean container vessel slicing through deep waters, merging seamlessly into a global horizon bridge illuminated by a rising dawn sun. Built for global ocean freight.',
+    specs: { Domain: 'Global Ocean Freight & Vessel Tracking', Meaning: 'Intercontinental Transit Certainty', VectorStyle: 'Nautical Horizon Vector' },
     svg: `
-      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none" stroke="currentColor">
-        <path d="M12 86H88" stroke-width="8" stroke-linecap="square"/>
-        <path d="M18 86L46 22H60L32 86H18Z" fill="currentColor"/>
-        <path d="M82 86L54 22H40L68 86H82Z" fill="currentColor" fill-opacity="0.3"/>
-        <rect x="42" y="16" width="16" height="12" fill="currentColor"/>
-        <line x1="28" y1="54" x2="72" y2="54" stroke-width="5"/>
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <circle cx="50" cy="42" r="14" fill="#f97316"/>
+        <path d="M12 60C35 40 65 40 88 60" stroke="#14b8a6" stroke-width="6" stroke-linecap="round"/>
+        <path d="M22 75L35 56H65L78 75H22Z" fill="#002244"/>
+        <line x1="10" y1="82" x2="90" y2="82" stroke="#002244" stroke-width="6" stroke-linecap="round"/>
+        <line x1="32" y1="56" x2="32" y2="46" stroke="#f97316" stroke-width="3"/>
+        <line x1="68" y1="56" x2="68" y2="46" stroke="#f97316" stroke-width="3"/>
       </svg>
     `
   },
-  {
-    id: 'logo-mobius-infinity',
-    name: 'The Möbius Infinity Span',
-    badge: 'Continuous Supply Chain Flow',
-    desc: 'An unbroken, perpetual Möbius ribbon arching through 3D space. Symbolizes nonstop global ocean/air cargo movement, resilient feedback loops, and 16 years of perpetual enterprise standing.',
-    specs: { Geometry: 'Continuous Topological Bridge Ribbon', Rationale: 'Perpetual Logistics Continuity', FaviconScale: 'Smooth vector flow' },
-    svg: `
-      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none" stroke="currentColor">
-        <path d="M20 65C12 55 12 38 25 28C38 18 55 24 68 38L80 52C88 62 88 75 78 82C68 89 54 84 44 72L30 55" stroke-width="6" stroke-linecap="round"/>
-        <path d="M30 55L18 42C10 32 15 20 28 16C42 12 58 20 70 32" stroke-width="5" stroke-linecap="round" stroke-dasharray="4 3"/>
-        <circle cx="50" cy="45" r="4.5" fill="currentColor"/>
-      </svg>
-    `
-  },
+
+  // 6. HUD Compliance Keystone Shield
   {
     id: 'logo-federal-shield',
-    name: 'The Federal Keystone Shield',
-    badge: 'Regulatory Compliance & HUD',
-    desc: 'An institutional security shield containing an arching bridge keystone and three five-pointed audit stars. Built specifically for Certified Occupancy Specialist authority and defense contractor compliance.',
-    specs: { Geometry: 'Heraldic Defense Shield + Bridge Arch', Rationale: 'HUD 50059, TRACS & Audit Defense', FaviconScale: 'Prestigious crest silhouette' },
+    cat: 'compliance',
+    name: 'The HUD Compliance Keystone Shield',
+    badge: 'Regulatory Audit Defense',
+    colors: ['#003366', '#dc2626', '#f59e0b'],
+    colorNames: 'Federal Blue &bull; Vermilion Red &bull; Audit Gold',
+    desc: 'Official Federal Blue security shield enclosing an arching keystone bridge and 3 gold compliance stars. Built specifically for Certified Occupancy Specialist authority and HUD 50059 defense.',
+    specs: { Domain: 'Certified Occupancy Specialist & HUD', Meaning: 'Zero Subsidy Recapture Audit Defense', VectorStyle: 'Institutional Defense Heraldry' },
     svg: `
-      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none" stroke="currentColor">
-        <path d="M50 14L84 26V54C84 74 69 88 50 94C31 88 16 74 16 54V26L50 14Z" stroke-width="5" stroke-linejoin="round"/>
-        <path d="M30 70C30 54 39 44 50 44C61 44 70 54 70 70" stroke-width="5" stroke-linecap="round"/>
-        <line x1="26" y1="72" x2="74" y2="72" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="50" cy="32" r="3.5" fill="currentColor"/>
-        <circle cx="36" cy="36" r="2.5" fill="currentColor"/>
-        <circle cx="64" cy="36" r="2.5" fill="currentColor"/>
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <path d="M50 12L85 25V54C85 75 69 90 50 96C31 90 15 75 15 54V25L50 12Z" fill="#003366"/>
+        <path d="M30 68C30 52 40 42 50 42C60 42 70 52 70 68" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+        <line x1="26" y1="72" x2="74" y2="72" stroke="#dc2626" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="50" cy="30" r="4.5" fill="#f59e0b"/>
+        <circle cx="36" cy="34" r="3.5" fill="#f59e0b"/>
+        <circle cx="64" cy="34" r="3.5" fill="#f59e0b"/>
       </svg>
     `
   },
+
+  // 7. ThinkAutomation Pipeline Conduit
   {
-    id: 'logo-compass-navigator',
-    name: 'The Global Navigator Arch',
-    badge: 'Intercontinental Logistics',
-    desc: 'A nautical quadrant sextant arc intersecting with precision digital suspension cables. Represents trans-oceanic navigation, international shipping lanes, and precision port-to-door telemetry.',
-    specs: { Geometry: 'Nautical Sextant + Suspension Cable Array', Rationale: 'Global Maritime & Air Freight', FaviconScale: 'Sharp navigational emblem' },
+    id: 'logo-thinkauto-pipeline',
+    cat: 'tech',
+    name: 'The ThinkAutomation Pipeline Conduit',
+    badge: 'C# Integration Middleware',
+    colors: ['#635bff', '#00d4ff', '#1e293b'],
+    colorNames: 'Stripe Blurple &bull; Electric Cyan &bull; Dark Slate',
+    desc: 'Two enterprise endpoints linked by a sub-second packet conduit glowing with high-voltage cyan data packets. Represents William’s C# ThinkAutomation parsing engines and exception routers.',
+    specs: { Domain: 'ThinkAutomation C# & Middleware', Meaning: 'Sub-Second Data Synchronization', VectorStyle: 'Isometric High-Tech Flow' },
     svg: `
-      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none" stroke="currentColor">
-        <path d="M18 84C18 46 48 16 86 16" stroke-width="6" stroke-linecap="round"/>
-        <line x1="18" y1="84" x2="86" y2="84" stroke-width="5.5" stroke-linecap="round"/>
-        <line x1="86" y1="16" x2="86" y2="84" stroke-width="5.5" stroke-linecap="round"/>
-        <line x1="38" y1="84" x2="38" y2="52" stroke-width="3.5" stroke-linecap="round"/>
-        <line x1="56" y1="84" x2="56" y2="34" stroke-width="3.5" stroke-linecap="round"/>
-        <line x1="74" y1="84" x2="74" y2="20" stroke-width="3.5" stroke-linecap="round"/>
-        <polygon points="18,84 26,72 32,78" fill="currentColor"/>
-        <circle cx="86" cy="16" r="4.5" fill="currentColor"/>
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <rect x="15" y="25" width="14" height="50" rx="3" fill="#635bff"/>
+        <rect x="71" y="25" width="14" height="50" rx="3" fill="#635bff"/>
+        <path d="M29 38H71" stroke="#00d4ff" stroke-width="5" stroke-linecap="round"/>
+        <path d="M29 50H71" stroke="#00d4ff" stroke-width="5" stroke-linecap="round"/>
+        <path d="M29 62H71" stroke="#00d4ff" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="42" cy="38" r="4" fill="#ffffff"/>
+        <circle cx="58" cy="50" r="4" fill="#ffffff"/>
+        <circle cx="46" cy="62" r="4" fill="#ffffff"/>
+        <line x1="12" y1="84" x2="88" y2="84" stroke="#1e293b" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+    `
+  },
+
+  // 8. Commercial Fleet Telematics Ring
+  {
+    id: 'logo-fleet-canbus',
+    cat: 'tech',
+    name: 'The Fleet Telematics J1939 Ring',
+    badge: 'Heavy Fleet CAN-Bus',
+    colors: ['#eab308', '#18181b', '#ef4444'],
+    colorNames: 'CAT Safety Yellow &bull; Asphalt Black &bull; Alert Red',
+    desc: 'An industrial heavy-duty telemetry hub gear enclosing an arching CAN-bus data bridge with a live engine alert beacon. Built for SAE J1939 protocols, sensor logging, and hands-free voice co-pilots.',
+    specs: { Domain: 'Commercial Fleet & CAN-Bus Telematics', Meaning: 'Mission-Critical Vehicle Telemetry', VectorStyle: 'Industrial Hardware Badge' },
+    svg: `
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <circle cx="50" cy="50" r="38" stroke="#eab308" stroke-width="6"/>
+        <circle cx="50" cy="50" r="30" stroke="#18181b" stroke-width="3" stroke-dasharray="6 4"/>
+        <path d="M28 62C36 46 64 46 72 62" stroke="#eab308" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="50" cy="38" r="6" fill="#ef4444"/>
+        <line x1="24" y1="66" x2="76" y2="66" stroke="#18181b" stroke-width="5"/>
+      </svg>
+    `
+  },
+
+  // 9. Universal Globe & Orbital Span
+  {
+    id: 'logo-universal-globe',
+    cat: 'cargo',
+    name: 'The Universal Orbital Span',
+    badge: 'Global Scale',
+    colors: ['#2563eb', '#10b981', '#1e1b4b'],
+    colorNames: 'Electric Azure &bull; Mint Green &bull; Midnight Indigo',
+    desc: 'A true embodiment of "Universal Bridge": a wireframe globe girdled by an ascending high-speed orbital bridge connecting the Western Hemisphere to global logistics nodes.',
+    specs: { Domain: 'Intercontinental Supply Networks', Meaning: 'Global Span & Universal Integration', VectorStyle: '3D Orbital Wireframe' },
+    svg: `
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <circle cx="50" cy="50" r="36" stroke="#2563eb" stroke-width="4"/>
+        <ellipse cx="50" cy="50" rx="36" ry="14" stroke="#2563eb" stroke-width="2.5" stroke-opacity="0.6"/>
+        <line x1="50" y1="14" x2="50" y2="86" stroke="#2563eb" stroke-width="2" stroke-opacity="0.6"/>
+        <path d="M12 70C25 40 75 30 92 48" stroke="#10b981" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="50" cy="39" r="5" fill="#10b981"/>
+        <circle cx="82" cy="44" r="4" fill="#ffffff"/>
+      </svg>
+    `
+  },
+
+  // 10. Yardi Database Schema Keystone
+  {
+    id: 'logo-yardi-schema',
+    cat: 'compliance',
+    name: 'The Relational Schema Keystone',
+    badge: 'Database Architecture',
+    colors: ['#0284c7', '#f59e0b', '#475569'],
+    colorNames: 'Database Cyan &bull; Schema Amber &bull; Relational Slate',
+    desc: 'Relational database cylinder stacks securely bridged by a golden compliance arch. Directly reflects Salvatore’s background as a former Yardi Voyager database internals systems engineer.',
+    specs: { Domain: 'Yardi Voyager & Relational SQL Schemas', Meaning: 'Database Structural Integrity', VectorStyle: 'Relational Stack Architecture' },
+    svg: `
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <ellipse cx="28" cy="30" rx="14" ry="6" fill="#0284c7"/>
+        <path d="M14 30V65C14 68 20 71 28 71C36 71 42 68 42 65V30" fill="#0284c7" fill-opacity="0.8"/>
+        <ellipse cx="72" cy="30" rx="14" ry="6" fill="#0284c7"/>
+        <path d="M58 30V65C58 68 64 71 72 71C80 71 86 68 86 65V30" fill="#0284c7" fill-opacity="0.8"/>
+        <path d="M28 50C38 32 62 32 72 50" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="50" cy="37" r="4.5" fill="#f59e0b"/>
+        <line x1="10" y1="82" x2="90" y2="82" stroke="#475569" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+    `
+  },
+
+  // 11. Swiss Brutalist Duotone Monolith
+  {
+    id: 'logo-swiss-duotone',
+    cat: 'sovereign',
+    name: 'The Swiss Bauhaus Cantilever',
+    badge: 'Architectural Modernism',
+    colors: ['#000000', '#ff0000', '#64748b'],
+    colorNames: 'Pitch Black &bull; International Red &bull; Concrete Slate',
+    desc: 'Stark 45-degree geometric cantilever bridge formed from high-contrast interlocking architectural planes. One of William’s favorite aesthetics, featuring a sharp International Red focal cut.',
+    specs: { Domain: 'Swiss Typographic & Grid Systems', Meaning: 'Pure Structural Power', VectorStyle: 'Geometric Planar Monolith' },
+    svg: `
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <path d="M12 85H88" stroke="#000000" stroke-width="8" stroke-linecap="square"/>
+        <path d="M18 85L46 22H60L32 85H18Z" fill="#000000"/>
+        <path d="M82 85L54 22H40L68 85H82Z" fill="#64748b"/>
+        <rect x="42" y="16" width="16" height="12" fill="#ff0000"/>
+        <line x1="28" y1="54" x2="72" y2="54" stroke="#ff0000" stroke-width="5"/>
+      </svg>
+    `
+  },
+
+  // 12. Platinum Infinity Loop
+  {
+    id: 'logo-platinum-infinity',
+    cat: 'sovereign',
+    name: 'The Titanium Infinity Span',
+    badge: 'Perpetual Enterprise',
+    colors: ['#3b82f6', '#94a3b8', '#ffffff'],
+    colorNames: 'Sapphire Blue &bull; Polished Titanium &bull; Pure White',
+    desc: 'A continuous, topological Möbius ribbon forming an infinity loop and suspension bridge span. Symbolizes 16+ continuous years in good standing and perpetual supply chain continuity.',
+    specs: { Domain: 'Sovereign Holding & Continuity', Meaning: 'Perpetual Enterprise Circulation', VectorStyle: 'Titanium 3D Ribbon' },
+    svg: `
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <path d="M22 65C12 55 12 38 25 28C38 18 55 24 68 38L80 52C88 62 88 75 78 82C68 89 54 84 44 72L30 55" stroke="#3b82f6" stroke-width="7" stroke-linecap="round"/>
+        <path d="M30 55L18 42C10 32 15 20 28 16C42 12 58 20 70 32" stroke="#94a3b8" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="50" cy="45" r="5" fill="#3b82f6"/>
+        <line x1="16" y1="86" x2="84" y2="86" stroke="#94a3b8" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+    `
+  },
+
+  // 13. Healthcare Cold-Chain Cryo Span
+  {
+    id: 'logo-pharma-cryo',
+    cat: 'cargo',
+    name: 'The Cold-Chain Cryo Span',
+    badge: 'Pharma & Healthcare Logistics',
+    colors: ['#0284c7', '#0d9488', '#38bdf8'],
+    colorNames: 'Cryo Cobalt &bull; Clinical Teal &bull; Frost Cyan',
+    desc: 'Tailored for Fortune 50 healthcare and life sciences freight: an interlocking crystal snowflake merged with an intermodal bridge arch. Represents temperature-controlled cold chain integrity.',
+    specs: { Domain: 'Fortune 50 Healthcare & Life Sciences', Meaning: 'Temperature-Controlled Data Integrity', VectorStyle: 'Precision Geometric Crystal Arch' },
+    svg: `
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <path d="M15 70C30 45 70 45 85 70" stroke="#0284c7" stroke-width="6" stroke-linecap="round"/>
+        <line x1="50" y1="20" x2="50" y2="60" stroke="#0d9488" stroke-width="5" stroke-linecap="round"/>
+        <line x1="30" y1="35" x2="70" y2="45" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+        <line x1="70" y1="35" x2="30" y2="45" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="50" cy="20" r="4.5" fill="#0284c7"/>
+        <circle cx="50" cy="50" r="5" fill="#0d9488"/>
+        <line x1="12" y1="78" x2="88" y2="78" stroke="#0284c7" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+    `
+  },
+
+  // 14. Madison & Wall Street Monogram
+  {
+    id: 'logo-madison-wall',
+    cat: 'sovereign',
+    name: 'The Madison & Wall Heritage Crest',
+    badge: 'Madison Ave & Wall St',
+    colors: ['#064e3b', '#b45309', '#eab308'],
+    colorNames: 'British Racing Green &bull; Antique Bronze &bull; Sovereign Gold',
+    desc: 'Classic Manhattan financial prestige: Roman serif capital letters "U" and "B" intertwined within an engraved architectural bridge vault. Commemorates William’s tech career on Wall St and Madison Ave.',
+    specs: { Domain: 'Wall St Brokerages & Madison Ave Agencies', Meaning: '25-Year Manhattan Tech Lineage', VectorStyle: 'Classical Engraved Crest' },
+    svg: `
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <circle cx="50" cy="50" r="40" stroke="#064e3b" stroke-width="5"/>
+        <path d="M30 32V54C30 64 38 70 48 70C58 70 66 64 66 54V32" stroke="#b45309" stroke-width="6" stroke-linecap="round"/>
+        <path d="M48 32H68C76 32 82 37 82 43C82 50 76 53 68 53H48" stroke="#eab308" stroke-width="5" stroke-linecap="round"/>
+        <path d="M48 53H70C78 53 84 58 84 65C84 72 78 76 70 76H48" stroke="#eab308" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+    `
+  },
+
+  // 15. Cyberpunk Mainframe Conduit
+  {
+    id: 'logo-cyberpunk-crt',
+    cat: 'tech',
+    name: 'The Cyberpunk CRT Conduit',
+    badge: 'Systems Hacker & Assembly',
+    colors: ['#00ff66', '#ffb703', '#052e16'],
+    colorNames: 'Phosphor Green &bull; Cyber Amber &bull; Deep Matrix',
+    desc: 'Terminal vector oscilloscope bridge featuring glowing phosphor green vectors, hexadecimal data points, and an amber alert tracer. Built for low-level systems programming and compiler mastery.',
+    specs: { Domain: 'Low-Latency Systems & Mainframes', Meaning: 'Real-Time Edge Diagnostic Matrix', VectorStyle: 'Terminal CRT Vector Display' },
+    svg: `
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <rect x="12" y="16" width="76" height="68" rx="4" stroke="#00ff66" stroke-width="4"/>
+        <path d="M16 64L34 38L50 56L66 38L84 64" stroke="#00ff66" stroke-width="4.5" stroke-linejoin="round"/>
+        <circle cx="50" cy="56" r="4.5" fill="#ffb703"/>
+        <circle cx="34" cy="38" r="3.5" fill="#00ff66"/>
+        <circle cx="66" cy="38" r="3.5" fill="#00ff66"/>
+        <line x1="20" y1="74" x2="80" y2="74" stroke="#00ff66" stroke-width="2" stroke-dasharray="4 4"/>
+      </svg>
+    `
+  },
+
+  // 16. Intermodal Sunrise Port Gateway
+  {
+    id: 'logo-intermodal-sunrise',
+    cat: 'cargo',
+    name: 'The Intermodal Sunrise Gateway',
+    badge: 'Port & Container Terminal',
+    colors: ['#f43f5e', '#fbbf24', '#0f172a'],
+    colorNames: 'Sunrise Coral &bull; Sunbeam Gold &bull; Port Navy',
+    desc: 'A vibrant coral sunrise ascending over a high-capacity container port gantry crane and suspension bridge. Built to symbolize container terminal operations, rail ramps, and port dwell elimination.',
+    specs: { Domain: 'Container Terminals & Port Operations', Meaning: 'Zero-Dwell Intermodal Routing', VectorStyle: 'Vibrant Duotone Horizon' },
+    svg: `
+      <svg viewBox="0 0 100 100" class="trademark-svg" fill="none">
+        <circle cx="50" cy="38" r="15" fill="#fbbf24"/>
+        <path d="M10 65C35 48 65 48 90 65" stroke="#f43f5e" stroke-width="6.5" stroke-linecap="round"/>
+        <path d="M26 84V56L44 44V84" fill="#0f172a"/>
+        <path d="M74 84V56L56 44V84" fill="#0f172a"/>
+        <line x1="10" y1="88" x2="90" y2="88" stroke="#0f172a" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="50" cy="52" r="4" fill="#f43f5e"/>
       </svg>
     `
   }
@@ -329,11 +558,16 @@ function renderApp() {
     </button>
   `).join('')
 
+  // Filter Trademarks
+  const filteredMarks = activeTmFilter === 'all'
+    ? trademarkLogos
+    : trademarkLogos.filter(m => m.cat === activeTmFilter)
+
   // Render Trademarks Grid HTML
-  const trademarkCardsHtml = trademarkLogos.map(m => `
+  const trademarkCardsHtml = filteredMarks.map(m => `
     <div class="trademark-card" id="${m.id}">
       <div class="trademark-preview-box">
-        <div style="color:var(--brand-primary);">
+        <div>
           ${m.svg}
         </div>
         <div class="trademark-lockup-row">
@@ -347,12 +581,19 @@ function renderApp() {
         <div>
           <span class="trademark-meta-badge">${m.badge}</span>
           <h3 style="font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:0.45rem;">${m.name}</h3>
+          
+          <!-- Palette Swatch Strip -->
+          <div class="swatch-row">
+            ${m.colors.map(c => `<span class="swatch-chip" style="background:${c};"></span>`).join('')}
+            <span class="swatch-label">${m.colorNames}</span>
+          </div>
+
           <p class="trademark-desc">${m.desc}</p>
           
           <table class="trademark-specs-table">
-            <tr><td class="k">Geometry</td><td class="v">${m.specs.Geometry}</td></tr>
-            <tr><td class="k">Domain</td><td class="v">${m.specs.Rationale}</td></tr>
-            <tr><td class="k">Scaling</td><td class="v">${m.specs.FaviconScale}</td></tr>
+            <tr><td class="k">Domain Focus</td><td class="v">${m.specs.Domain}</td></tr>
+            <tr><td class="k">Symbolism</td><td class="v">${m.specs.Meaning}</td></tr>
+            <tr><td class="k">Vector Style</td><td class="v">${m.specs.VectorStyle}</td></tr>
           </table>
         </div>
 
@@ -388,7 +629,7 @@ function renderApp() {
     <header class="site-header">
       <div class="container nav-wrap">
         <a href="#" class="brand-badge">
-          <div class="brand-icon" style="background:transparent;border:none;box-shadow:none;color:var(--brand-primary);width:40px;height:40px;">
+          <div class="brand-icon" style="background:transparent;border:none;box-shadow:none;width:44px;height:44px;">
             ${activeLogoObj.svg}
           </div>
           <div class="brand-text">
@@ -403,7 +644,7 @@ function renderApp() {
             🏢 Enterprise Overview
           </button>
           <button class="page-switch-btn ${activeView === 'trademarks' ? 'active' : ''}" data-view="trademarks">
-            ✨ Brandmark Studio (8)
+            🎨 Trademark Studio (${trademarkLogos.length})
           </button>
         </div>
 
@@ -421,18 +662,27 @@ function renderApp() {
           <div class="container">
             <div class="hero-meta-strip">
               <span class="meta-chip highlight">Corporate Identity Suite</span>
-              <span class="meta-chip">USPTO Trademark Explorations</span>
-              <span class="meta-chip">Vector SVG Scalability</span>
+              <span class="meta-chip">16 Distinct Color Trademarks</span>
+              <span class="meta-chip">Multi-Tone Vector SVGs</span>
             </div>
 
             <h2 class="hero-title" style="font-size:2.8rem;">
               Brandmark & Trademark Studio.<br/>
-              <span class="accent-word">8 Distinct Corporate Emblems.</span>
+              <span class="accent-word">16 Full-Color Corporate Emblems.</span>
             </h2>
             
             <p class="hero-subtitle">
-              Each concept embodies a distinct facet of Universal Bridge Consulting: from classical institutional keystones and Wall Street ligatures, to high-throughput data pipelines and Bauhaus Swiss cantilevers. Click any mark to preview it instantly as the active header brandmark across all 32 style sheets!
+              Engineered around our company name and institutional disciplines: WiseTech CargoWise supply chains, Yardi & HUD 50059 regulatory compliance, mathematical algorithms, and Wall Street heritage. Click any mark to preview it live in color as the site header logo!
             </p>
+
+            <!-- Trademark Filter Tabs -->
+            <div class="trademark-filter-bar">
+              <button class="tm-filter-btn ${activeTmFilter === 'all' ? 'active' : ''}" data-tmfilter="all">All Trademarks (16)</button>
+              <button class="tm-filter-btn ${activeTmFilter === 'cargo' ? 'active' : ''}" data-tmfilter="cargo">🚢 Supply Chain & Cargo (5)</button>
+              <button class="tm-filter-btn ${activeTmFilter === 'tech' ? 'active' : ''}" data-tmfilter="tech">⚡ Tech, Math & Telematics (4)</button>
+              <button class="tm-filter-btn ${activeTmFilter === 'sovereign' ? 'active' : ''}" data-tmfilter="sovereign">🏛️ Sovereign & Wall St (4)</button>
+              <button class="tm-filter-btn ${activeTmFilter === 'compliance' ? 'active' : ''}" data-tmfilter="compliance">⚖️ Compliance & HUD (3)</button>
+            </div>
           </div>
         </section>
 
@@ -683,6 +933,17 @@ function renderApp() {
         activeView = view
         renderApp()
         window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    })
+  })
+
+  // Attach trademark filter button events
+  document.querySelectorAll('.tm-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-tmfilter')
+      if (filter) {
+        activeTmFilter = filter
+        renderApp()
       }
     })
   })
