@@ -2,13 +2,21 @@ import './style.css'
 
 const app = document.querySelector('#app')
 
-// 26 Total Themes Categorized
+// 32 Total Themes Categorized
 const themes = [
+  // FEATURED: McKinsey / Swiss / Federal Family (6 Variations)
+  { id: 'theme-mckinsey-sovereign', cat: 'mckinsey_fam', name: '👑 M.1 McKinsey Pure Sovereign', desc: 'Deep McKinsey Midnight & Playfair Serif' },
+  { id: 'theme-mckinsey-swiss', cat: 'mckinsey_fam', name: '📐 M.2 McKinsey x Swiss Grid', desc: 'Stark 2px Midnight Borders, Zero Radius & Space Grotesk' },
+  { id: 'theme-mckinsey-federal', cat: 'mckinsey_fam', name: '🦅 M.3 McKinsey x Federal Audit', desc: 'Official Fed Navy, HUD Seal & Document Tables' },
+  { id: 'theme-mckinsey-dark', cat: 'mckinsey_fam', name: '🌌 M.4 McKinsey Dark Boardroom', desc: 'Midnight Obsidian & Sapphire Platinum Lighting' },
+  { id: 'theme-mckinsey-walker', cat: 'mckinsey_fam', name: '🍷 M.5 McKinsey x Walker SCM', desc: 'Alabaster Ivory, Deep Navy & SCM Crimson Accent' },
+  { id: 'theme-swiss-federal', cat: 'mckinsey_fam', name: '⚖️ M.6 Swiss Federal Minimalist', desc: 'High-Speed Pure Compliance Grid & Red Stamp' },
+
   // Top Enterprise Brands (8)
   { id: 'theme-stripe', cat: 'topbrands', name: '🟣 Stripe (Fintech & Dev)', desc: 'Stripe Blurple Gradient & Precision Light Mode' },
   { id: 'theme-palantir', cat: 'topbrands', name: '🛡️ Palantir (Foundry Intel)', desc: 'Tactical Blueprint Blue & Titanium Command' },
   { id: 'theme-linear', cat: 'topbrands', name: '⚡ Linear (Craft Standard)', desc: 'Dark Obsidian & Glowing Luminous Micro-Borders' },
-  { id: 'theme-mckinsey', cat: 'topbrands', name: '🏛️ McKinsey (Strategy Tier)', desc: 'McKinsey Midnight & Authoritative Editorial Serif' },
+  { id: 'theme-mckinsey', cat: 'topbrands', name: '🏛️ McKinsey Standard', desc: 'McKinsey Midnight & Editorial Serif' },
   { id: 'theme-wisetech', cat: 'topbrands', name: '🌐 WiseTech (CargoWise Brand)', desc: 'WiseTech Royal Blue & Clean Freight Enterprise' },
   { id: 'theme-apple-exec', cat: 'topbrands', name: '🍎 Apple Pro (Cupertino Glass)', desc: 'Space Gray & Polished Frosted Titanium' },
   { id: 'theme-bloomberg', cat: 'topbrands', name: '📊 Bloomberg (Quant Matrix)', desc: 'Pure Black & High-Contrast Terminal Amber' },
@@ -39,8 +47,8 @@ const themes = [
   { id: 'theme-retro-mac', cat: 'heritage', name: '3.6 Retro Mac 1984 GUI', desc: 'System 7 Platinum Gray & Bevels' }
 ]
 
-let activeCategory = 'topbrands' // Default to show the new top company styles immediately!
-let activeTheme = 'theme-stripe'
+let activeCategory = 'mckinsey_fam' // Open right to William's favorites!
+let activeTheme = 'theme-mckinsey-sovereign'
 let activeTab = 'cargowise'
 
 const cockpitData = {
@@ -180,18 +188,19 @@ function renderApp() {
   `).join('')
 
   app.innerHTML = `
-    <!-- Sticky Theme Selector Cockpit (26 Styles with Top Companies) -->
+    <!-- Sticky Theme Selector Cockpit (32 Styles with McKinsey/Swiss/Federal Showcase) -->
     <div class="theme-selector-bar">
       <div class="selector-top-row">
         <div class="selector-title">
-          <span>🎨 Style Engine: 26 World-Class Aesthetics</span>
+          <span>🎨 Style Engine: 32 World-Class Aesthetics</span>
         </div>
         <div class="category-tabs">
+          <button class="cat-tab ${activeCategory === 'mckinsey_fam' ? 'active' : ''}" data-cat="mckinsey_fam">🏆 McKinsey & Federal (6)</button>
           <button class="cat-tab ${activeCategory === 'topbrands' ? 'active' : ''}" data-cat="topbrands">🏢 Top Companies (8)</button>
           <button class="cat-tab ${activeCategory === 'exec' ? 'active' : ''}" data-cat="exec">Executive (6)</button>
           <button class="cat-tab ${activeCategory === 'radical' ? 'active' : ''}" data-cat="radical">Radical / Tech (6)</button>
           <button class="cat-tab ${activeCategory === 'heritage' ? 'active' : ''}" data-cat="heritage">Heritage / Gov (6)</button>
-          <button class="cat-tab ${activeCategory === 'all' ? 'active' : ''}" data-cat="all">All (26)</button>
+          <button class="cat-tab ${activeCategory === 'all' ? 'active' : ''}" data-cat="all">All (32)</button>
         </div>
       </div>
       <div class="theme-btn-grid">
