@@ -1,4 +1,4 @@
-(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),t.credentials=e.crossOrigin===`use-credentials`?`include`:e.crossOrigin===`anonymous`?`omit`:`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();var e=document.querySelector(`#app`),t=[{id:`theme-v1-classic`,name:`1.1: Walker Classic Pure`,desc:`Corporate Navy & White`},{id:`theme-v2-crimson`,name:`1.2: Walker Crimson Heritage`,desc:`Navy & SCM Crimson #8C2633`},{id:`theme-v3-cobalt`,name:`1.3: Cobalt Enterprise`,desc:`ThinkAutomation Cloud Pro`},{id:`theme-v4-steel`,name:`1.4: Slate & Steel Density`,desc:`Operations Logistics Command`},{id:`theme-v5-midnight`,name:`1.5: Midnight Boardroom`,desc:`Dark Executive Hybrid`},{id:`theme-v6-platinum`,name:`1.6: Platinum & Sapphire`,desc:`Institutional Consulting Tier`}],n=`theme-v1-classic`,r=`cargowise`,i={cargowise:{title:`WiseTech CargoWise One Integration`,desc:`Sub-second multi-leg air & ocean data enrichment pipeline powering Fortune 500 supply chain visibility.`,specs:[{label:`Throughput SLA`,value:`< 250ms per transaction`},{label:`Read Replica Joins`,value:`GlobalOceanWeekly View Injections`},{label:`Data Integrity`,value:`100% Strict Audit Mode`},{label:`Middleware Layer`,value:`ThinkAutomation C#`}],code:`// [WiseTech CargoWise One Data Adapter]
+(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),t.credentials=e.crossOrigin===`use-credentials`?`include`:e.crossOrigin===`anonymous`?`omit`:`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();var e=document.querySelector(`#app`),t=[{id:`theme-v1-classic`,cat:`exec`,name:`1.1 Walker Classic Pure`,desc:`Corporate Navy & Crisp White`},{id:`theme-v2-crimson`,cat:`exec`,name:`1.2 Walker SCM Crimson`,desc:`Navy & Signature #8C2633 Burgundy`},{id:`theme-v3-cobalt`,cat:`exec`,name:`1.3 Cobalt Enterprise`,desc:`ThinkAutomation Cloud Pro`},{id:`theme-v4-steel`,cat:`exec`,name:`1.4 Slate & Steel Density`,desc:`Operations Logistics Command`},{id:`theme-v5-midnight`,cat:`exec`,name:`1.5 Midnight Boardroom`,desc:`Dark Executive Navy Hybrid`},{id:`theme-v6-platinum`,cat:`exec`,name:`1.6 Platinum & Sapphire`,desc:`Institutional Consulting Tier`},{id:`theme-brutalist`,cat:`radical`,name:`2.1 Swiss Brutalist`,desc:`Stark B&W, 3px Borders, Zero Radius`},{id:`theme-cyberpunk`,cat:`radical`,name:`2.2 Matrix Cyberpunk CRT`,desc:`Pure Black & Phosphor Green Glow`},{id:`theme-heavy-freight`,cat:`radical`,name:`2.3 Heavy Freight CAT`,desc:`Safety Yellow & Industrial Asphalt`},{id:`theme-tokyo-night`,cat:`radical`,name:`2.4 Tokyo Night Synth`,desc:`Deep Indigo, Neon Magenta & Violet`},{id:`theme-apple-monolith`,cat:`radical`,name:`2.5 High-Fashion Monolith`,desc:`Pitch Black & Hairline Monochrome`},{id:`theme-vaporwave`,cat:`radical`,name:`2.6 Retro Vaporwave`,desc:`Pastel Sunset Pink & Cyan Mint`},{id:`theme-nordic-warm`,cat:`heritage`,name:`3.1 Nordic Minimalist Paper`,desc:`Warm Ivory, Terracotta & Serif`},{id:`theme-sovereign-gold`,cat:`heritage`,name:`3.2 Sovereign Wall Street Gold`,desc:`Charcoal & Imperial Gilded Gold`},{id:`theme-emerald-wealth`,cat:`heritage`,name:`3.3 Private Equity Emerald`,desc:`British Racing Green & Champagne`},{id:`theme-federal-gov`,cat:`heritage`,name:`3.4 Federal HUD Defense`,desc:`Official Fed Navy & Red Audit Stamp`},{id:`theme-neumorphic`,cat:`heritage`,name:`3.5 Soft Clay Neumorphic`,desc:`Tactile 3D Extruded Shadows`},{id:`theme-retro-mac`,cat:`heritage`,name:`3.6 Retro Mac 1984 GUI`,desc:`System 7 Platinum Gray & Bevels`}],n=`all`,r=`theme-v1-classic`,i=`cargowise`,a={cargowise:{title:`WiseTech CargoWise One Integration`,desc:`Sub-second multi-leg air & ocean data enrichment pipeline powering Fortune 500 supply chain visibility.`,specs:[{label:`Throughput SLA`,value:`< 250ms per transaction`},{label:`Read Replica Joins`,value:`GlobalOceanWeekly View Injections`},{label:`Data Integrity`,value:`100% Strict Audit Mode`},{label:`Middleware Layer`,value:`ThinkAutomation C#`}],code:`// [WiseTech CargoWise One Data Adapter]
 public async Task<PipelineResult> ProcessShipmentAsync(ConsignmentRequest req) {
     using var db = new CWReadOnlyReplicaContext();
     var bol = await db.GlobalOceanWeekly
@@ -52,23 +52,31 @@ void OnCanFrameReceived(uint32_t pgn, const uint8_t* data) {
   "headquarters": "Garden City, Nassau County, NY 11530",
   "managing_director": "William Hanusiewicz (Principal Architect)",
   "lead_systems_architect": "Salvatore Hanusiewicz (Dual B.S. CS & Math, SUNY)"
-}`}};function a(e){return e.replace(/&/g,`&amp;`).replace(/</g,`&lt;`).replace(/>/g,`&gt;`).replace(/"/g,`&quot;`).replace(/'/g,`&#039;`)}function o(e){n=e,document.body.className=e,s()}function s(){let c=i[r],l=c.specs.map(e=>`
+}`}};function o(e){return e.replace(/&/g,`&amp;`).replace(/</g,`&lt;`).replace(/>/g,`&gt;`).replace(/"/g,`&quot;`).replace(/'/g,`&#039;`)}function s(e){r=e,document.body.className=e,c()}function c(){let l=a[i],u=l.specs.map(e=>`
     <tr>
       <td class="label">${e.label}</td>
       <td class="val">${e.value}</td>
     </tr>
-  `).join(``);e.innerHTML=`
-    <!-- Live Interactive Theme Selector: 6 Variations of Style 1 -->
-    <div class="theme-selector-bar">
-      <div class="theme-selector-label">
-        <span>🎨 Select Style 1 Variation:</span>
-      </div>
-      <div class="theme-btn-group">
-        ${t.map(e=>`
-    <button class="theme-btn ${n===e.id?`active`:``}" data-theme="${e.id}">
+  `).join(``),d=(n===`all`?t:t.filter(e=>e.cat===n)).map(e=>`
+    <button class="theme-btn ${r===e.id?`active`:``}" data-theme="${e.id}" title="${e.desc}">
       ${e.name}
     </button>
-  `).join(``)}
+  `).join(``);e.innerHTML=`
+    <!-- Sticky Theme Selector Cockpit (18 Dramatically Different Styles) -->
+    <div class="theme-selector-bar">
+      <div class="selector-top-row">
+        <div class="selector-title">
+          <span>🎨 Style Engine: 18 Live Aesthetics</span>
+        </div>
+        <div class="category-tabs">
+          <button class="cat-tab ${n===`all`?`active`:``}" data-cat="all">All (18)</button>
+          <button class="cat-tab ${n===`exec`?`active`:``}" data-cat="exec">Executive (6)</button>
+          <button class="cat-tab ${n===`radical`?`active`:``}" data-cat="radical">Radical / Tech (6)</button>
+          <button class="cat-tab ${n===`heritage`?`active`:``}" data-cat="heritage">Heritage / Gov (6)</button>
+        </div>
+      </div>
+      <div class="theme-btn-grid">
+        ${d}
       </div>
     </div>
 
@@ -151,10 +159,10 @@ void OnCanFrameReceived(uint32_t pgn, const uint8_t* data) {
         <div class="cockpit-wrapper">
           <div class="cockpit-bar">
             <div class="cockpit-tabs">
-              <button class="tab-btn ${r===`cargowise`?`active`:``}" data-tab="cargowise">⚡ CargoWise One</button>
-              <button class="tab-btn ${r===`yardi`?`active`:``}" data-tab="yardi">⚖️ HUD & Yardi Schema</button>
-              <button class="tab-btn ${r===`fleet`?`active`:``}" data-tab="fleet">🛰️ Fleet Telematics</button>
-              <button class="tab-btn ${r===`dossier`?`active`:``}" data-tab="dossier">🏛️ Corporate Dossier</button>
+              <button class="tab-btn ${i===`cargowise`?`active`:``}" data-tab="cargowise">⚡ CargoWise One</button>
+              <button class="tab-btn ${i===`yardi`?`active`:``}" data-tab="yardi">⚖️ HUD & Yardi Schema</button>
+              <button class="tab-btn ${i===`fleet`?`active`:``}" data-tab="fleet">🛰️ Fleet Telematics</button>
+              <button class="tab-btn ${i===`dossier`?`active`:``}" data-tab="dossier">🏛️ Corporate Dossier</button>
             </div>
             <div class="cockpit-meta">
               <span class="badge-sla">LIVE PREVIEW</span>
@@ -165,21 +173,21 @@ void OnCanFrameReceived(uint32_t pgn, const uint8_t* data) {
           <div class="split-grid">
             <div class="spec-pane">
               <div>
-                <h3>${c.title}</h3>
-                <p>${c.desc}</p>
+                <h3>${l.title}</h3>
+                <p>${l.desc}</p>
                 <table class="spec-table">
-                  ${l}
+                  ${u}
                 </table>
               </div>
               <div>
-                <a href="mailto:ceo@universalbridgeconsulting.com?subject=Consultation: ${encodeURIComponent(c.title)}" class="btn-primary" style="padding:0.6rem 1.25rem;font-size:0.85rem;">
+                <a href="mailto:ceo@universalbridgeconsulting.com?subject=Consultation: ${encodeURIComponent(l.title)}" class="btn-primary" style="padding:0.6rem 1.25rem;font-size:0.85rem;">
                   Request Architectural Review &rarr;
                 </a>
               </div>
             </div>
 
             <div class="code-pane">
-              <pre><code>${a(c.code)}</code></pre>
+              <pre><code>${o(l.code)}</code></pre>
             </div>
           </div>
         </div>
@@ -328,4 +336,4 @@ void OnCanFrameReceived(uint32_t pgn, const uint8_t* data) {
         </div>
       </div>
     </footer>
-  `,document.querySelectorAll(`.theme-btn`).forEach(e=>{e.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`);t&&o(t)})}),document.querySelectorAll(`.tab-btn`).forEach(e=>{e.addEventListener(`click`,()=>{let t=e.getAttribute(`data-tab`);t&&i[t]&&(r=t,s())})})}document.body.className=n,s();
+  `,document.querySelectorAll(`.cat-tab`).forEach(e=>{e.addEventListener(`click`,()=>{let t=e.getAttribute(`data-cat`);t&&(n=t,c())})}),document.querySelectorAll(`.theme-btn`).forEach(e=>{e.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`);t&&s(t)})}),document.querySelectorAll(`.tab-btn`).forEach(e=>{e.addEventListener(`click`,()=>{let t=e.getAttribute(`data-tab`);t&&a[t]&&(i=t,c())})})}document.body.className=r,c();
