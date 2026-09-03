@@ -2,16 +2,34 @@ import './style.css'
 
 const app = document.querySelector('#app')
 
-// 6 Executive Variations of Style 1 (The Walker / ThinkAutomation Family)
+// 18 Total Themes Categorized
 const themes = [
-  { id: 'theme-v1-classic', name: '1.1: Walker Classic Pure', desc: 'Corporate Navy & White' },
-  { id: 'theme-v2-crimson', name: '1.2: Walker Crimson Heritage', desc: 'Navy & SCM Crimson #8C2633' },
-  { id: 'theme-v3-cobalt', name: '1.3: Cobalt Enterprise', desc: 'ThinkAutomation Cloud Pro' },
-  { id: 'theme-v4-steel', name: '1.4: Slate & Steel Density', desc: 'Operations Logistics Command' },
-  { id: 'theme-v5-midnight', name: '1.5: Midnight Boardroom', desc: 'Dark Executive Hybrid' },
-  { id: 'theme-v6-platinum', name: '1.6: Platinum & Sapphire', desc: 'Institutional Consulting Tier' }
+  // Executive Suite (Style 1 Family)
+  { id: 'theme-v1-classic', cat: 'exec', name: '1.1 Walker Classic Pure', desc: 'Corporate Navy & Crisp White' },
+  { id: 'theme-v2-crimson', cat: 'exec', name: '1.2 Walker SCM Crimson', desc: 'Navy & Signature #8C2633 Burgundy' },
+  { id: 'theme-v3-cobalt', cat: 'exec', name: '1.3 Cobalt Enterprise', desc: 'ThinkAutomation Cloud Pro' },
+  { id: 'theme-v4-steel', cat: 'exec', name: '1.4 Slate & Steel Density', desc: 'Operations Logistics Command' },
+  { id: 'theme-v5-midnight', cat: 'exec', name: '1.5 Midnight Boardroom', desc: 'Dark Executive Navy Hybrid' },
+  { id: 'theme-v6-platinum', cat: 'exec', name: '1.6 Platinum & Sapphire', desc: 'Institutional Consulting Tier' },
+  
+  // Radical & Creative
+  { id: 'theme-brutalist', cat: 'radical', name: '2.1 Swiss Brutalist', desc: 'Stark B&W, 3px Borders, Zero Radius' },
+  { id: 'theme-cyberpunk', cat: 'radical', name: '2.2 Matrix Cyberpunk CRT', desc: 'Pure Black & Phosphor Green Glow' },
+  { id: 'theme-heavy-freight', cat: 'radical', name: '2.3 Heavy Freight CAT', desc: 'Safety Yellow & Industrial Asphalt' },
+  { id: 'theme-tokyo-night', cat: 'radical', name: '2.4 Tokyo Night Synth', desc: 'Deep Indigo, Neon Magenta & Violet' },
+  { id: 'theme-apple-monolith', cat: 'radical', name: '2.5 High-Fashion Monolith', desc: 'Pitch Black & Hairline Monochrome' },
+  { id: 'theme-vaporwave', cat: 'radical', name: '2.6 Retro Vaporwave', desc: 'Pastel Sunset Pink & Cyan Mint' },
+
+  // Heritage & Institutional
+  { id: 'theme-nordic-warm', cat: 'heritage', name: '3.1 Nordic Minimalist Paper', desc: 'Warm Ivory, Terracotta & Serif' },
+  { id: 'theme-sovereign-gold', cat: 'heritage', name: '3.2 Sovereign Wall Street Gold', desc: 'Charcoal & Imperial Gilded Gold' },
+  { id: 'theme-emerald-wealth', cat: 'heritage', name: '3.3 Private Equity Emerald', desc: 'British Racing Green & Champagne' },
+  { id: 'theme-federal-gov', cat: 'heritage', name: '3.4 Federal HUD Defense', desc: 'Official Fed Navy & Red Audit Stamp' },
+  { id: 'theme-neumorphic', cat: 'heritage', name: '3.5 Soft Clay Neumorphic', desc: 'Tactile 3D Extruded Shadows' },
+  { id: 'theme-retro-mac', cat: 'heritage', name: '3.6 Retro Mac 1984 GUI', desc: 'System 7 Platinum Gray & Bevels' }
 ]
 
+let activeCategory = 'all'
 let activeTheme = 'theme-v1-classic'
 let activeTab = 'cargowise'
 
@@ -141,19 +159,31 @@ function renderApp() {
     </tr>
   `).join('')
 
-  const themeButtons = themes.map(t => `
-    <button class="theme-btn ${activeTheme === t.id ? 'active' : ''}" data-theme="${t.id}">
+  const filteredThemes = activeCategory === 'all' 
+    ? themes 
+    : themes.filter(t => t.cat === activeCategory)
+
+  const themeButtons = filteredThemes.map(t => `
+    <button class="theme-btn ${activeTheme === t.id ? 'active' : ''}" data-theme="${t.id}" title="${t.desc}">
       ${t.name}
     </button>
   `).join('')
 
   app.innerHTML = `
-    <!-- Live Interactive Theme Selector: 6 Variations of Style 1 -->
+    <!-- Sticky Theme Selector Cockpit (18 Dramatically Different Styles) -->
     <div class="theme-selector-bar">
-      <div class="theme-selector-label">
-        <span>🎨 Select Style 1 Variation:</span>
+      <div class="selector-top-row">
+        <div class="selector-title">
+          <span>🎨 Style Engine: 18 Live Aesthetics</span>
+        </div>
+        <div class="category-tabs">
+          <button class="cat-tab ${activeCategory === 'all' ? 'active' : ''}" data-cat="all">All (18)</button>
+          <button class="cat-tab ${activeCategory === 'exec' ? 'active' : ''}" data-cat="exec">Executive (6)</button>
+          <button class="cat-tab ${activeCategory === 'radical' ? 'active' : ''}" data-cat="radical">Radical / Tech (6)</button>
+          <button class="cat-tab ${activeCategory === 'heritage' ? 'active' : ''}" data-cat="heritage">Heritage / Gov (6)</button>
+        </div>
       </div>
-      <div class="theme-btn-group">
+      <div class="theme-btn-grid">
         ${themeButtons}
       </div>
     </div>
@@ -415,6 +445,17 @@ function renderApp() {
       </div>
     </footer>
   `
+
+  // Attach category tab events
+  document.querySelectorAll('.cat-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const cat = tab.getAttribute('data-cat')
+      if (cat) {
+        activeCategory = cat
+        renderApp()
+      }
+    })
+  })
 
   // Attach theme switcher click events
   document.querySelectorAll('.theme-btn').forEach(btn => {

@@ -1,12 +1,14 @@
 /* ==========================================================================
-   Universal Bridge Consulting, LLC - 6 Executive Variations of Style 1
+   Universal Bridge Consulting, LLC - 18 Dramatically Different Styles Showcase
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=Syne:wght@700;800&display=swap');
 
 /* ==========================================================================
-   1.1: Walker Classic Pure (Production Navy & Crisp White)
+   CATEGORY A: EXECUTIVE SUITE (6 VARIATIONS)
    ========================================================================== */
+
+/* 1.1: Walker Classic Pure */
 :root, body.theme-v1-classic {
   --bg-page: #f8fafc;
   --bg-secondary: #ffffff;
@@ -15,29 +17,26 @@
   --card-hover: #f1f5f9;
   --border-subtle: #cbd5e1;
   --border-focus: #0f2744;
-  
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-muted: #64748b;
-  
-  --brand-primary: #0f2744;      /* Walker Navy */
+  --brand-primary: #0f2744;
   --brand-secondary: #1b4b72;
-  --brand-accent: #2563eb;       /* Cobalt Blue */
+  --brand-accent: #2563eb;
   --brand-success: #166534;
   --brand-success-bg: #f0fdf4;
   --brand-success-border: #bbf7d0;
-  
   --hero-gradient: linear-gradient(135deg, #0f2744 0%, #1e3a8a 100%);
   --hero-text: #ffffff;
   --hero-sub: #cbd5e1;
   --font-family: 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --card-radius: 12px;
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --border-width: 1px;
 }
 
-/* ==========================================================================
-   1.2: Walker Crimson Heritage (Navy & Walker SCM Signature Burgundy #8C2633)
-   ========================================================================== */
+/* 1.2: Walker Crimson Heritage */
 body.theme-v2-crimson {
   --bg-page: #fafaf9;
   --bg-secondary: #ffffff;
@@ -46,29 +45,26 @@ body.theme-v2-crimson {
   --card-hover: #f5f5f4;
   --border-subtle: #d6d3d1;
   --border-focus: #8c2633;
-  
   --text-primary: #1c1917;
   --text-secondary: #44403c;
   --text-muted: #78716c;
-  
-  --brand-primary: #8c2633;      /* Canonical Walker SCM Crimson */
-  --brand-secondary: #0f2744;    /* Deep Navy */
-  --brand-accent: #8c2633;       /* Crimson Highlight */
+  --brand-primary: #8c2633;
+  --brand-secondary: #0f2744;
+  --brand-accent: #8c2633;
   --brand-success: #15803d;
   --brand-success-bg: #f0fdf4;
   --brand-success-border: #bbf7d0;
-  
   --hero-gradient: linear-gradient(135deg, #1c1917 0%, #8c2633 100%);
   --hero-text: #ffffff;
   --hero-sub: #f5f5f4;
   --font-family: 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --card-radius: 12px;
   --shadow-card: 0 4px 12px rgba(140, 38, 51, 0.08);
+  --border-width: 1px;
 }
 
-/* ==========================================================================
-   1.3: Cobalt Blue Enterprise (ThinkAutomation Cloud Pro)
-   ========================================================================== */
+/* 1.3: Cobalt Enterprise */
 body.theme-v3-cobalt {
   --bg-page: #f0f4f8;
   --bg-secondary: #ffffff;
@@ -77,29 +73,26 @@ body.theme-v3-cobalt {
   --card-hover: #f8fafc;
   --border-subtle: #bfdbfe;
   --border-focus: #1d4ed8;
-  
   --text-primary: #0b192c;
   --text-secondary: #334155;
   --text-muted: #64748b;
-  
-  --brand-primary: #1d4ed8;      /* Royal Cobalt */
-  --brand-secondary: #0284c7;    /* Sky */
+  --brand-primary: #1d4ed8;
+  --brand-secondary: #0284c7;
   --brand-accent: #2563eb;
   --brand-success: #059669;
   --brand-success-bg: #ecfdf5;
   --brand-success-border: #a7f3d0;
-  
   --hero-gradient: linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%);
   --hero-text: #ffffff;
   --hero-sub: #e0f2fe;
   --font-family: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --shadow-card: 0 10px 25px -5px rgba(29, 78, 216, 0.08), 0 8px 10px -6px rgba(29, 78, 216, 0.04);
+  --card-radius: 16px;
+  --shadow-card: 0 10px 25px -5px rgba(29, 78, 216, 0.08);
+  --border-width: 1px;
 }
 
-/* ==========================================================================
-   1.4: Slate & Steel High-Density (Operations Logistics Command)
-   ========================================================================== */
+/* 1.4: Slate & Steel Density */
 body.theme-v4-steel {
   --bg-page: #f1f5f9;
   --bg-secondary: #ffffff;
@@ -108,29 +101,26 @@ body.theme-v4-steel {
   --card-hover: #e2e8f0;
   --border-subtle: #94a3b8;
   --border-focus: #334155;
-  
   --text-primary: #0f172a;
   --text-secondary: #334155;
   --text-muted: #475569;
-  
-  --brand-primary: #334155;      /* Slate Steel */
+  --brand-primary: #334155;
   --brand-secondary: #0f172a;
   --brand-accent: #0284c7;
   --brand-success: #166534;
   --brand-success-bg: #f0fdf4;
   --brand-success-border: #86efac;
-  
   --hero-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   --hero-text: #ffffff;
   --hero-sub: #cbd5e1;
   --font-family: 'JetBrains Mono', monospace;
   --font-mono: 'JetBrains Mono', monospace;
-  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --card-radius: 6px;
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.1);
+  --border-width: 1px;
 }
 
-/* ==========================================================================
-   1.5: Midnight Boardroom Dual-Tone (Dark Executive Hybrid)
-   ========================================================================== */
+/* 1.5: Midnight Boardroom */
 body.theme-v5-midnight {
   --bg-page: #08101e;
   --bg-secondary: #0f1c2e;
@@ -139,29 +129,26 @@ body.theme-v5-midnight {
   --card-hover: #1a2c47;
   --border-subtle: #1e3553;
   --border-focus: #38bdf8;
-  
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  
-  --brand-primary: #38bdf8;      /* Electric Ice Navy */
+  --brand-primary: #38bdf8;
   --brand-secondary: #818cf8;
   --brand-accent: #38bdf8;
   --brand-success: #34d399;
   --brand-success-bg: rgba(52, 211, 153, 0.12);
   --brand-success-border: rgba(52, 211, 153, 0.3);
-  
   --hero-gradient: radial-gradient(circle at 50% 0%, #172a45 0%, #08101e 100%);
   --hero-text: #ffffff;
   --hero-sub: #94a3b8;
   --font-family: 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --card-radius: 12px;
   --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --border-width: 1px;
 }
 
-/* ==========================================================================
-   1.6: Platinum & Sapphire Consulting (McKinsey / Institutional Tier)
-   ========================================================================== */
+/* 1.6: Platinum & Sapphire */
 body.theme-v6-platinum {
   --bg-page: #f8f9fa;
   --bg-secondary: #ffffff;
@@ -170,28 +157,372 @@ body.theme-v6-platinum {
   --card-hover: #f1f3f5;
   --border-subtle: #dee2e6;
   --border-focus: #002b49;
-  
   --text-primary: #111827;
   --text-secondary: #374151;
   --text-muted: #6b7280;
-  
-  --brand-primary: #002b49;      /* Deep Sapphire */
+  --brand-primary: #002b49;
   --brand-secondary: #005a9c;
   --brand-accent: #005a9c;
   --brand-success: #047857;
   --brand-success-bg: #ecfdf5;
   --brand-success-border: #a7f3d0;
-  
   --hero-gradient: linear-gradient(135deg, #002b49 0%, #004b79 100%);
   --hero-text: #ffffff;
   --hero-sub: #e5e7eb;
   --font-family: 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --card-radius: 10px;
   --shadow-card: 0 4px 20px rgba(0, 43, 73, 0.06);
+  --border-width: 1px;
 }
 
 /* ==========================================================================
-   Core Layout & Components
+   CATEGORY B: RADICAL & CREATIVE (6 DRAMATIC STYLES)
+   ========================================================================== */
+
+/* 2.1: Swiss Brutalist */
+body.theme-brutalist {
+  --bg-page: #ffffff;
+  --bg-secondary: #ffffff;
+  --panel-bg: #ffffff;
+  --card-bg: #ffffff;
+  --card-hover: #000000;
+  --border-subtle: #000000;
+  --border-focus: #000000;
+  --text-primary: #000000;
+  --text-secondary: #000000;
+  --text-muted: #333333;
+  --brand-primary: #000000;
+  --brand-secondary: #000000;
+  --brand-accent: #ff0000;       /* Harsh International Red */
+  --brand-success: #000000;
+  --brand-success-bg: #e5e5e5;
+  --brand-success-border: #000000;
+  --hero-gradient: #ffffff;
+  --hero-text: #000000;
+  --hero-sub: #000000;
+  --font-family: 'Space Grotesk', -apple-system, sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+  --card-radius: 0px;
+  --shadow-card: 6px 6px 0px #000000;
+  --border-width: 3px;
+}
+
+/* 2.2: Matrix Cyberpunk CRT */
+body.theme-cyberpunk {
+  --bg-page: #000502;
+  --bg-secondary: #021106;
+  --panel-bg: #031708;
+  --card-bg: #031a0a;
+  --card-hover: #062b10;
+  --border-subtle: #00ff66;
+  --border-focus: #00ff66;
+  --text-primary: #00ff66;
+  --text-secondary: #00cc52;
+  --text-muted: #008a37;
+  --brand-primary: #00ff66;
+  --brand-secondary: #39ff14;
+  --brand-accent: #00ff66;
+  --brand-success: #00ff66;
+  --brand-success-bg: rgba(0, 255, 102, 0.15);
+  --brand-success-border: #00ff66;
+  --hero-gradient: radial-gradient(circle at 50% 0%, #063012 0%, #000502 100%);
+  --hero-text: #00ff66;
+  --hero-sub: #00cc52;
+  --font-family: 'Courier Prime', 'JetBrains Mono', monospace;
+  --font-mono: 'Courier Prime', monospace;
+  --card-radius: 0px;
+  --shadow-card: 0 0 15px rgba(0, 255, 102, 0.35);
+  --border-width: 1.5px;
+}
+
+/* 2.3: Heavy Freight & Logistics (CAT Safety Yellow) */
+body.theme-heavy-freight {
+  --bg-page: #18181b;
+  --bg-secondary: #27272a;
+  --panel-bg: #27272a;
+  --card-bg: #27272a;
+  --card-hover: #3f3f46;
+  --border-subtle: #3f3f46;
+  --border-focus: #eab308;
+  --text-primary: #ffffff;
+  --text-secondary: #d4d4d8;
+  --text-muted: #a1a1aa;
+  --brand-primary: #eab308;      /* Caterpillar Yellow */
+  --brand-secondary: #ca8a04;
+  --brand-accent: #facc15;
+  --brand-success: #eab308;
+  --brand-success-bg: rgba(234, 179, 8, 0.15);
+  --brand-success-border: #eab308;
+  --hero-gradient: linear-gradient(135deg, #09090b 0%, #27272a 100%);
+  --hero-text: #facc15;
+  --hero-sub: #e4e4e7;
+  --font-family: 'JetBrains Mono', monospace;
+  --font-mono: 'JetBrains Mono', monospace;
+  --card-radius: 4px;
+  --shadow-card: 0 4px 0px #eab308;
+  --border-width: 2px;
+}
+
+/* 2.4: Tokyo Night Synth */
+body.theme-tokyo-night {
+  --bg-page: #1a1b26;
+  --bg-secondary: #16161e;
+  --panel-bg: #1f2335;
+  --card-bg: #1f2335;
+  --card-hover: #292e42;
+  --border-subtle: #292e42;
+  --border-focus: #f7768e;
+  --text-primary: #c0caf5;
+  --text-secondary: #9aa5ce;
+  --text-muted: #565f89;
+  --brand-primary: #bb9af7;      /* Neon Violet */
+  --brand-secondary: #7dcfff;    /* Cyan */
+  --brand-accent: #f7768e;       /* Hot Magenta */
+  --brand-success: #9ece6a;
+  --brand-success-bg: rgba(158, 206, 106, 0.15);
+  --brand-success-border: #9ece6a;
+  --hero-gradient: radial-gradient(circle at 70% 30%, #3d2b56 0%, #1a1b26 70%);
+  --hero-text: #ffffff;
+  --hero-sub: #c0caf5;
+  --font-family: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --card-radius: 12px;
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.5);
+  --border-width: 1px;
+}
+
+/* 2.5: High-Fashion Monolith */
+body.theme-apple-monolith {
+  --bg-page: #000000;
+  --bg-secondary: #0a0a0a;
+  --panel-bg: #0f0f0f;
+  --card-bg: #0d0d0d;
+  --card-hover: #141414;
+  --border-subtle: #262626;
+  --border-focus: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: #a3a3a3;
+  --text-muted: #525252;
+  --brand-primary: #ffffff;
+  --brand-secondary: #e5e5e5;
+  --brand-accent: #ffffff;
+  --brand-success: #ffffff;
+  --brand-success-bg: #1a1a1a;
+  --brand-success-border: #404040;
+  --hero-gradient: #000000;
+  --hero-text: #ffffff;
+  --hero-sub: #737373;
+  --font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --card-radius: 0px;
+  --shadow-card: none;
+  --border-width: 1px;
+  letter-spacing: 0.04em;
+}
+
+/* 2.6: Retro Vaporwave Sunset */
+body.theme-vaporwave {
+  --bg-page: #1d1238;
+  --bg-secondary: #2b1b4d;
+  --panel-bg: #2d1754;
+  --card-bg: #2b1b4d;
+  --card-hover: #3c246b;
+  --border-subtle: #ff71ce;
+  --border-focus: #01cdfe;
+  --text-primary: #01cdfe;
+  --text-secondary: #ff71ce;
+  --text-muted: #b967ff;
+  --brand-primary: #ff71ce;      /* Pastel Pink */
+  --brand-secondary: #01cdfe;    /* Pastel Cyan */
+  --brand-accent: #05ffa1;       /* Mint */
+  --brand-success: #05ffa1;
+  --brand-success-bg: rgba(5, 255, 161, 0.15);
+  --brand-success-border: #05ffa1;
+  --hero-gradient: linear-gradient(180deg, #ff71ce 0%, #01cdfe 100%);
+  --hero-text: #1d1238;
+  --hero-sub: #1d1238;
+  --font-family: 'Syne', 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --card-radius: 14px;
+  --shadow-card: 0 10px 30px rgba(255, 113, 206, 0.25);
+  --border-width: 1.5px;
+}
+
+/* ==========================================================================
+   CATEGORY C: HERITAGE & INSTITUTIONAL (6 DISTINCT FLAVORS)
+   ========================================================================== */
+
+/* 3.1: Nordic Minimalist Warm (Editorial Paper) */
+body.theme-nordic-warm {
+  --bg-page: #faf8f5;
+  --bg-secondary: #ffffff;
+  --panel-bg: #f4efe6;
+  --card-bg: #ffffff;
+  --card-hover: #fcfbf9;
+  --border-subtle: #e2dbce;
+  --border-focus: #b45309;
+  --text-primary: #292524;
+  --text-secondary: #57534e;
+  --text-muted: #78716c;
+  --brand-primary: #78350f;      /* Deep Terracotta */
+  --brand-secondary: #b45309;
+  --brand-accent: #b45309;
+  --brand-success: #15803d;
+  --brand-success-bg: #f5f5f4;
+  --brand-success-border: #d6d3d1;
+  --hero-gradient: linear-gradient(135deg, #f5f0e6 0%, #ece3d2 100%);
+  --hero-text: #292524;
+  --hero-sub: #57534e;
+  --font-family: 'Newsreader', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --card-radius: 4px;
+  --shadow-card: 0 2px 8px rgba(41, 37, 36, 0.04);
+  --border-width: 1px;
+}
+
+/* 3.2: Sovereign Wall Street Gold */
+body.theme-sovereign-gold {
+  --bg-page: #0d0f12;
+  --bg-secondary: #13171d;
+  --panel-bg: #181d24;
+  --card-bg: #151920;
+  --card-hover: #1e242e;
+  --border-subtle: rgba(212, 175, 55, 0.3);
+  --border-focus: #ffd700;
+  --text-primary: #f5f5f7;
+  --text-secondary: #c5a059;
+  --text-muted: #8a7c5b;
+  --brand-primary: #d4af37;      /* Imperial Gold */
+  --brand-secondary: #ffd700;
+  --brand-accent: #e5c158;
+  --brand-success: #10b981;
+  --brand-success-bg: rgba(16, 185, 129, 0.15);
+  --brand-success-border: rgba(16, 185, 129, 0.4);
+  --hero-gradient: radial-gradient(circle at 50% 0%, #2b2313 0%, #0d0f12 100%);
+  --hero-text: #ffffff;
+  --hero-sub: #d4af37;
+  --font-family: 'Cinzel', 'Plus Jakarta Sans', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --card-radius: 8px;
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.7);
+  --border-width: 1px;
+}
+
+/* 3.3: Private Equity British Racing Emerald */
+body.theme-emerald-wealth {
+  --bg-page: #041a14;
+  --bg-secondary: #07261d;
+  --panel-bg: #092e24;
+  --card-bg: #08281f;
+  --card-hover: #0c382b;
+  --border-subtle: #124d3c;
+  --border-focus: #c5a059;
+  --text-primary: #f2fbf7;
+  --text-secondary: #a3d9c5;
+  --text-muted: #5e9b86;
+  --brand-primary: #10b981;      /* Mint / Emerald */
+  --brand-secondary: #c5a059;    /* Gold */
+  --brand-accent: #c5a059;
+  --brand-success: #34d399;
+  --brand-success-bg: rgba(52, 211, 153, 0.15);
+  --brand-success-border: #34d399;
+  --hero-gradient: linear-gradient(135deg, #041a14 0%, #0a3d2e 100%);
+  --hero-text: #ffffff;
+  --hero-sub: #a3d9c5;
+  --font-family: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --card-radius: 12px;
+  --shadow-card: 0 10px 25px rgba(0, 0, 0, 0.5);
+  --border-width: 1px;
+}
+
+/* 3.4: Federal HUD Gov / Defense Contractor */
+body.theme-federal-gov {
+  --bg-page: #f8fafc;
+  --bg-secondary: #ffffff;
+  --panel-bg: #f1f5f9;
+  --card-bg: #ffffff;
+  --card-hover: #f8fafc;
+  --border-subtle: #94a3b8;
+  --border-focus: #003366;
+  --text-primary: #1e293b;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --brand-primary: #003366;      /* Official Federal Blue */
+  --brand-secondary: #002244;
+  --brand-accent: #cc0000;       /* Federal Red Seal */
+  --brand-success: #005a36;
+  --brand-success-bg: #ecfdf5;
+  --brand-success-border: #6ee7b7;
+  --hero-gradient: linear-gradient(180deg, #003366 0%, #001f3f 100%);
+  --hero-text: #ffffff;
+  --hero-sub: #cbd5e1;
+  --font-family: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'Courier Prime', monospace;
+  --card-radius: 2px;
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.15);
+  --border-width: 2px;
+}
+
+/* 3.5: Soft Clay Neumorphism (Tactile 3D) */
+body.theme-neumorphic {
+  --bg-page: #e0e5ec;
+  --bg-secondary: #e0e5ec;
+  --panel-bg: #e0e5ec;
+  --card-bg: #e0e5ec;
+  --card-hover: #e0e5ec;
+  --border-subtle: transparent;
+  --border-focus: #3b82f6;
+  --text-primary: #313b4c;
+  --text-secondary: #57657d;
+  --text-muted: #79879e;
+  --brand-primary: #3b82f6;
+  --brand-secondary: #2563eb;
+  --brand-accent: #3b82f6;
+  --brand-success: #10b981;
+  --brand-success-bg: #e0e5ec;
+  --brand-success-border: transparent;
+  --hero-gradient: #e0e5ec;
+  --hero-text: #212936;
+  --hero-sub: #57657d;
+  --font-family: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --card-radius: 20px;
+  --shadow-card: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5);
+  --border-width: 0px;
+}
+
+/* 3.6: Retro Mac 1984 (Classic Desktop System) */
+body.theme-retro-mac {
+  --bg-page: #c3c7cb;
+  --bg-secondary: #dcdfe3;
+  --panel-bg: #ffffff;
+  --card-bg: #ffffff;
+  --card-hover: #f0f0f0;
+  --border-subtle: #000000;
+  --border-focus: #000000;
+  --text-primary: #000000;
+  --text-secondary: #222222;
+  --text-muted: #555555;
+  --brand-primary: #000080;      /* Classic Titlebar Navy */
+  --brand-secondary: #000000;
+  --brand-accent: #000080;
+  --brand-success: #008000;
+  --brand-success-bg: #ffffff;
+  --brand-success-border: #000000;
+  --hero-gradient: #000080;
+  --hero-text: #ffffff;
+  --hero-sub: #dcdfe3;
+  --font-family: 'Geneva', Tahoma, sans-serif;
+  --font-mono: 'Courier Prime', monospace;
+  --card-radius: 0px;
+  --shadow-card: inset -2px -2px 0px #000000, inset 2px 2px 0px #ffffff;
+  --border-width: 2px;
+}
+
+/* ==========================================================================
+   Base Structure
    ========================================================================== */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -201,7 +532,7 @@ body {
   font-family: var(--font-family);
   min-height: 100vh;
   line-height: 1.6;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .container {
@@ -210,69 +541,103 @@ body {
   padding: 0 1.75rem;
 }
 
-/* Sticky Theme Selector Cockpit */
+/* ==========================================================================
+   Multi-Category Theme Switcher Bar
+   ========================================================================== */
 .theme-selector-bar {
   position: sticky;
   top: 0;
-  z-index: 200;
-  background: #0f172a;
+  z-index: 300;
+  background: #090d16;
   color: #fff;
-  padding: 0.65rem 1rem;
+  padding: 0.6rem 1rem;
   border-bottom: 2px solid var(--brand-accent);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  font-size: 0.85rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
-.theme-selector-label {
-  font-weight: 700;
+.selector-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.selector-title {
+  font-weight: 800;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  letter-spacing: 0.02em;
+  color: #f8fafc;
 }
 
-.theme-btn-group {
+.category-tabs {
   display: flex;
   gap: 0.35rem;
-  flex-wrap: wrap;
 }
 
-.theme-btn {
+.cat-tab {
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #e2e8f0;
-  padding: 0.35rem 0.75rem;
-  border-radius: 6px;
-  font-size: 0.78rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  padding: 0.2rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
+.cat-tab.active {
+  background: #38bdf8;
+  color: #090d16;
+  border-color: #38bdf8;
+  font-weight: 700;
+}
+
+.theme-btn-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  max-height: 120px;
+  overflow-y: auto;
+  padding-bottom: 0.25rem;
+}
+
+.theme-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  padding: 0.3rem 0.65rem;
+  border-radius: 5px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
 .theme-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
 }
 
 .theme-btn.active {
-  background: #fff;
+  background: #ffffff;
   color: #0f172a;
-  border-color: #fff;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  font-weight: 700;
+  border-color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  font-weight: 800;
 }
 
 /* Header */
 header.site-header {
   background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width) solid var(--border-subtle);
   padding: 1.1rem 0;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .nav-wrap {
@@ -291,13 +656,14 @@ header.site-header {
 .brand-icon {
   width: 44px;
   height: 44px;
-  border-radius: 10px;
+  border-radius: var(--card-radius);
   background: var(--brand-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   box-shadow: var(--shadow-card);
+  border: var(--border-width) solid var(--border-subtle);
 }
 
 .brand-text h1 {
@@ -320,7 +686,7 @@ header.site-header {
   align-items: center;
   gap: 0.5rem;
   background: var(--brand-success-bg);
-  border: 1px solid var(--brand-success-border);
+  border: var(--border-width) solid var(--brand-success-border);
   color: var(--brand-success);
   padding: 0.35rem 0.85rem;
   border-radius: 999px;
@@ -338,9 +704,9 @@ header.site-header {
 
 /* Hero Section */
 .hero-section {
-  padding: 4rem 0 3rem;
+  padding: 4rem 0 3.25rem;
   background: var(--hero-gradient);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width) solid var(--border-subtle);
   margin-bottom: 3.5rem;
 }
 
@@ -353,10 +719,10 @@ header.site-header {
 
 .meta-chip {
   background: var(--card-bg);
-  border: 1px solid var(--border-subtle);
+  border: var(--border-width) solid var(--border-subtle);
   color: var(--text-secondary);
   padding: 0.3rem 0.8rem;
-  border-radius: 6px;
+  border-radius: var(--card-radius);
   font-size: 0.78rem;
   font-family: var(--font-mono);
   font-weight: 600;
@@ -381,10 +747,6 @@ header.site-header {
   color: var(--brand-accent);
 }
 
-body.theme-v5-midnight .hero-title .accent-word {
-  color: #38bdf8;
-}
-
 .hero-subtitle {
   font-size: 1.18rem;
   color: var(--hero-sub);
@@ -401,11 +763,11 @@ body.theme-v5-midnight .hero-title .accent-word {
 
 .kpi-card {
   background: var(--card-bg);
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
+  border: var(--border-width) solid var(--border-subtle);
+  border-radius: var(--card-radius);
   padding: 1.5rem;
   box-shadow: var(--shadow-card);
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .kpi-card:hover {
@@ -419,10 +781,6 @@ body.theme-v5-midnight .hero-title .accent-word {
   font-family: var(--font-mono);
   color: var(--brand-primary);
   margin-bottom: 0.25rem;
-}
-
-body.theme-v5-midnight .kpi-num {
-  color: #38bdf8;
 }
 
 .kpi-label {
@@ -440,8 +798,8 @@ body.theme-v5-midnight .kpi-num {
 /* Split-Preview Cockpit */
 .cockpit-wrapper {
   background: var(--panel-bg);
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
+  border: var(--border-width) solid var(--border-subtle);
+  border-radius: var(--card-radius);
   overflow: hidden;
   box-shadow: var(--shadow-card);
   margin-bottom: 4.5rem;
@@ -449,7 +807,7 @@ body.theme-v5-midnight .kpi-num {
 
 .cockpit-bar {
   background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width) solid var(--border-subtle);
   padding: 0.85rem 1.25rem;
   display: flex;
   align-items: center;
@@ -466,10 +824,10 @@ body.theme-v5-midnight .kpi-num {
 
 .tab-btn {
   background: var(--bg-page);
-  border: 1px solid var(--border-subtle);
+  border: var(--border-width) solid var(--border-subtle);
   color: var(--text-secondary);
   padding: 0.4rem 0.85rem;
-  border-radius: 6px;
+  border-radius: var(--card-radius);
   font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
@@ -494,7 +852,7 @@ body.theme-v5-midnight .kpi-num {
 .badge-sla {
   background: var(--brand-success-bg);
   color: var(--brand-success);
-  border: 1px solid var(--brand-success-border);
+  border: var(--border-width) solid var(--brand-success-border);
   padding: 0.2rem 0.55rem;
   border-radius: 4px;
   font-weight: 700;
@@ -514,7 +872,7 @@ body.theme-v5-midnight .kpi-num {
 
 .spec-pane {
   padding: 2rem;
-  border-right: 1px solid var(--border-subtle);
+  border-right: var(--border-width) solid var(--border-subtle);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -541,7 +899,7 @@ body.theme-v5-midnight .kpi-num {
 
 .spec-table td {
   padding: 0.6rem 0;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width) solid var(--border-subtle);
   font-size: 0.85rem;
 }
 
@@ -557,7 +915,7 @@ body.theme-v5-midnight .kpi-num {
 }
 
 .code-pane {
-  background: #090d16;
+  background: #060911;
   color: #f1f5f9;
   padding: 1.75rem;
   font-family: var(--font-mono);
@@ -566,7 +924,7 @@ body.theme-v5-midnight .kpi-num {
   overflow-x: auto;
 }
 
-/* Practice Areas & Cards */
+/* Practice Areas */
 .section-title {
   text-align: center;
   margin-bottom: 2.75rem;
@@ -593,11 +951,11 @@ body.theme-v5-midnight .kpi-num {
 
 .content-card {
   background: var(--card-bg);
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
+  border: var(--border-width) solid var(--border-subtle);
+  border-radius: var(--card-radius);
   padding: 2rem;
   box-shadow: var(--shadow-card);
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .content-card:hover {
@@ -613,7 +971,7 @@ body.theme-v5-midnight .kpi-num {
   padding: 0.25rem 0.65rem;
   border-radius: 4px;
   background: var(--bg-page);
-  border: 1px solid var(--border-subtle);
+  border: var(--border-width) solid var(--border-subtle);
   color: var(--brand-accent);
   margin-bottom: 1.2rem;
   text-transform: uppercase;
@@ -657,8 +1015,8 @@ body.theme-v5-midnight .kpi-num {
 
 .leader-box {
   background: var(--card-bg);
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
+  border: var(--border-width) solid var(--border-subtle);
+  border-radius: var(--card-radius);
   padding: 2.25rem;
   box-shadow: var(--shadow-card);
   display: flex;
@@ -697,9 +1055,9 @@ body.theme-v5-midnight .kpi-num {
 
 .tags-strip span {
   background: var(--bg-page);
-  border: 1px solid var(--border-subtle);
+  border: var(--border-width) solid var(--border-subtle);
   padding: 0.25rem 0.65rem;
-  border-radius: 6px;
+  border-radius: var(--card-radius);
   font-size: 0.75rem;
   font-family: var(--font-mono);
   color: var(--text-muted);
@@ -708,8 +1066,8 @@ body.theme-v5-midnight .kpi-num {
 /* Dossier */
 .dossier-card {
   background: var(--panel-bg);
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
+  border: var(--border-width) solid var(--border-subtle);
+  border-radius: var(--card-radius);
   padding: 2.5rem;
   box-shadow: var(--shadow-card);
   margin-bottom: 5rem;
@@ -722,7 +1080,7 @@ body.theme-v5-midnight .kpi-num {
   flex-wrap: wrap;
   gap: 1.5rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width) solid var(--border-subtle);
   margin-bottom: 2rem;
 }
 
@@ -734,8 +1092,8 @@ body.theme-v5-midnight .kpi-num {
 
 .dossier-item {
   background: var(--bg-page);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
+  border: var(--border-width) solid var(--border-subtle);
+  border-radius: var(--card-radius);
   padding: 1rem 1.25rem;
 }
 
@@ -754,13 +1112,13 @@ body.theme-v5-midnight .kpi-num {
   font-weight: 700;
 }
 
-/* Buttons */
+/* Primary Action Button */
 .btn-primary {
   background: var(--brand-primary);
   color: #fff;
-  border: none;
+  border: var(--border-width) solid var(--border-subtle);
   padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  border-radius: var(--card-radius);
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
@@ -779,7 +1137,7 @@ body.theme-v5-midnight .kpi-num {
 /* Footer */
 footer.site-footer {
   background: var(--bg-secondary);
-  border-top: 1px solid var(--border-subtle);
+  border-top: var(--border-width) solid var(--border-subtle);
   padding: 3rem 0 2rem;
   font-size: 0.85rem;
   color: var(--text-muted);
