@@ -1,0 +1,7 @@
+{
+  "name": "universal-bridge-web",
+  "private": true,
+  "scripts": {
+    "build": "echo Static build ready"
+  }
+}
